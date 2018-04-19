@@ -1,0 +1,35 @@
+/app/config/ed.yml
+/app/bootstrap.php.cache
+!app/cache/.gitkeep
+/app/config/parameters.yml
+!app/logs/.gitkeep
+/app/phpunit.xml
+
+/var/logs/*
+/var/cache/*
+
+/bin/
+/composer.phar
+/vendor/
+/web/bundles/
+
+/app/SymfonyRequirements.php
+/app/check.php
+
+# Symfony directories (added by ED)
+/app/DoctrineMigrations/
+web/css/*
+web/js/*
+web/images/*
+
+# IDE
+/nbproject/*
+/.idea/*
+/web/uploads
+!/web/uploads/media/sonatamedia/files/admin/file.png
+/uploads/
+
+# Gulp
+/src/AppBundle/Resources/public/gulpfile.js
+/src/AppBundle/Resources/public/node_modules/
+/src/AppBundle/Resources/public/.sass-cache/
