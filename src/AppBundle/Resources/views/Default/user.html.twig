@@ -25,17 +25,21 @@
     
   </style>
  </head>
- <body>
-  <div style='padding: 50px;background-color: lightblue;'>
-    <h1 style='font-size: 30px;text-align: center;margin-top: 100px';>Bravo Marija</h1>
-  </div>
+  <body>
+    <center>
+      <div style='padding: 50px;background-color: lightblue;'>
+        <h1 style='font-size: 30px;text-align: center;margin-top: 100px';>Welcome user</h1>
+      </div>
   
-  <form>
-   <label for="fname">Ime</label>
-   <input type="text" id="fname" name="fname">
-  </form>
-    
-  <input type="button" value="Submit">
-   <p><b><a href="{{ path('homepage') }}">Homepage</a></b></p>
+      <div style='width: 300px; padding: 75px;background-color: gray;'
+        <form>
+         <label for="fname">Unesi ime</label>
+         <input type="text" id="fname" name="fname" placeholder="Ime">
+       </form>
+  
+       <input type="button" value="Submit">
+      </div>
+     <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage</a></b></p>
+    </center>
  </body>
 </html>
