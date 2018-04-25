@@ -1,6 +1,6 @@
 
 {% extends 'base.html.twig' %}
-{% block title %}Welcome user{% endblock %}
+{% block title %}Welcome user!{% endblock %}
 {% block stylesheets %}
   <style>
     body {
@@ -31,17 +31,26 @@
 {% block body %}
     <center>
       <div style='padding: 50px;background-color: lightblue;'>
-        <h1 style='font-size: 30px;text-align: center;margin-top: 100px';>Welcome user</h1>
-      </div>s
+        <h1 style='font-size: 30px;text-align: center;'>Welcome {% if firstName is defined %}{{ firstName }} {% else%} User {% endif %} </h1>
+      </div>
   
-      <div style='width: 300px; padding: 75px;background-color: gray;'
-        <form>
-         <label for="fname">Unesi ime</label>
-         <input type="text" id="fname" name="fname" placeholder="Ime">
-        </form>
+      <div style='width: 300px; padding: 75px;background-color: gray;'>
+{#          {{ form_start(userForm) }}#}
+          <form action="{{ path('user') }}" method='POST'>
+            {{ form_widget(userForm.ime) }}
+            {{ form_widget(userForm.save) }}
+            {{ form_errors(userForm) }}
+            {{ form_rest(userForm) }}
+{#          {{ form_end(userForm) }}#}
+          </form>
+       
   
-         <input type="button" value="Submit">
+  
+        
       </div>
       <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage></b></p>
     </center>
+    
+  
+   
 {% endblock %}

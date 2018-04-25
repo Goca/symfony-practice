@@ -1,0 +1,12 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+  Opsa radi  !
+  <hr />
+  Zdravo, 
+  {% if firstName is defined %}{{ firstName }}{% endif %} 
+  {% if lastName is defined %}{{ lastName }}{% endif %} 
+  <br/>
+  {% if description is defined %}{{ description }}{% endif %} 
+
+{% endblock %}
