@@ -16,21 +16,10 @@ class UserForm extends AbstractType
     {
         $builder
             ->add('ime', TextType::class)
-//            ->add('prezime', TextType::class, array('required' => false))
-//            ->add('opis', TextareaType::class, array('required' => false))
+            ->add('prezime', TextType::class, array('required' => false))
+           ->add('opis', TextareaType::class, array('required' => false))
             ->add('save', SubmitType::class, array('label' => 'Submit'))
         ;
     }   
 }
 
-
-//class WelcomeForm extends AbstractType
-//{
-//    public function buildForm(FormBuilderInterface $builder, array $options)
-//    {
-//        $builder
-//            ->add('Ime', TextType::class)
-//            ->add('save', SubmitType::class, array('label' => 'Submit'))
-//        ;
-//    }   
-//}

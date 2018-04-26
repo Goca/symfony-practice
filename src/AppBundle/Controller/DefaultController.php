@@ -54,9 +54,9 @@ class DefaultController extends Controller
            * array(3) { ["Ime"]=> string(6) "Marija" ["Prezime"]=> string(5) "Budic" ["description"]=> string(17) "O meni neki tekst" }
            */
           return $this->render('@App/Default/form3.html.twig', [
-              'firstName'=> $formData['Ime'],
-              'lastName'=> $formData['Prezime'],
-              'description'=>$formData['Opis'],
+              'firstName'=> $formData['ime'],
+              'lastName'=> $formData['prezime'],
+              'description'=>$formData['opis'],
               
             ]); 
         }
@@ -73,7 +73,7 @@ class DefaultController extends Controller
     public function userAction(Request $request)
     {
         
-       $form = $this->createForm(UserForm::class, null, [      
+       $form = $this->createForm(WelcomeForm::class, null, [      
             'action' => $this->generateUrl('user')         
         ]); 
        
@@ -83,7 +83,7 @@ class DefaultController extends Controller
           
           $formData = $form->getData();
           
-          return $this->render('@App/Default/user.html.twig', ['firstName'=>$formData['ime'],'userForm'=>$form->createView()]); 
+          return $this->render('@App/Default/user.html.twig', ['firstName'=>$formData['ime'],'welcomeForm'=>$form->createView()]); 
           
         }
         
@@ -91,7 +91,7 @@ class DefaultController extends Controller
 //            'action' => $this->generateUrl('user')         
 //        ]); 
         
-        return $this->render('@App/Default/user.html.twig', ['userForm'=>$form->createView()]); // , moze da ima i drugi argument, sada ima view ... array(), ne mora
+        return $this->render('@App/Default/user.html.twig', ['welcomeForm'=>$form->createView()]); // , moze da ima i drugi argument, sada ima view ... array(), ne mora
         
         // return $this->render('default/index.html.twig'); // vraca difoltnu pocetnu, index.html.twig
     }
