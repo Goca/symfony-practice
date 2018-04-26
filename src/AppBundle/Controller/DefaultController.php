@@ -83,7 +83,7 @@ class DefaultController extends Controller
           
           $formData = $form->getData();
           
-          return $this->render('@App/Default/user.html.twig', ['firstName'=>$formData['ime'],'welcomeForm'=>$form->createView()]); 
+          return $this->render('@App/Default/user.html.twig', ['firstName'=>$formData['ime'],'userForm'=>$form->createView()]); 
           
         }
         
@@ -91,10 +91,43 @@ class DefaultController extends Controller
 //            'action' => $this->generateUrl('user')         
 //        ]); 
         
-        return $this->render('@App/Default/user.html.twig', ['welcomeForm'=>$form->createView()]); // , moze da ima i drugi argument, sada ima view ... array(), ne mora
+        return $this->render('@App/Default/user.html.twig', ['userForm'=>$form->createView()]); // , moze da ima i drugi argument, sada ima view ... array(), ne mora
         
         // return $this->render('default/index.html.twig'); // vraca difoltnu pocetnu, index.html.twig
     }
+    
+    
+    
+    /**
+     * @Route("/welcome", name="welcome")
+     */
+    public function welcomeAction(Request $request)
+    {
+        
+       $form = $this->createForm(WelcomeForm::class, null, [      
+            'action' => $this->generateUrl('welcome')         
+        ]); 
+       
+       $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {         
+          
+          $formData = $form->getData();
+          
+          return $this->render('@App/Default/welcome.html.twig', ['firstName'=>$formData['ime'],'welcomeForm'=>$form->createView()]); 
+          
+        }
+        
+//        $form = $this->createForm(UserForm::class, null, [      
+//            'action' => $this->generateUrl('user')         
+//        ]); 
+        
+        return $this->render('@App/Default/welcome.html.twig', ['welcomeForm'=>$form->createView()]); // , moze da ima i drugi argument, sada ima view ... array(), ne mora
+        
+        // return $this->render('default/index.html.twig'); // vraca difoltnu pocetnu, index.html.twig
+    }
+    
+    
     
     /**
      * @Route("/form3", name="form3")

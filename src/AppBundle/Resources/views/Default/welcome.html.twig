@@ -1,0 +1,104 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Welcome user!{% endblock %}
+{% block stylesheets %}
+  <style>
+    body {
+      background-color: #cccccc;
+    }
+
+    input {
+      width: 100%;
+    }
+    
+    input[type=button]{
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 20px 5px;;
+      cursor: pointer;
+    }
+
+    a {
+      color: red;
+    }
+    
+    input.beige{
+      background-color: beige;
+    }
+   input.orange{
+      background-color:  #ffdd99;
+    }
+    
+    input.yellow{
+      background-color:  #ffff99;
+    }
+   
+
+   
+
+    
+  </style>
+{% endblock %}
+  
+{% block body %}
+    <center>
+      <div style='padding: 50px;background-color: lightblue;'>
+        <h1 style='font-size: 30px;text-align: center;'>Welcome {% if firstName is defined %}{{ firstName }} {% else%} User {% endif %} </h1>
+      </div>
+  
+      <div style='width: 300px; padding: 75px;background-color: gray;'>
+         {{ form_start(welcomeForm) }}
+          <form action="{{ path('welcome') }}" method='POST'>
+
+
+           <div style='margin-bottom:20px'>
+            {{ form_label(welcomeForm.ime)}}
+            {{ form_errors(welcomeForm.ime) }}
+            {{ form_widget(welcomeForm.ime, {'attr': {'class': 'orange'}})}}
+{#          { form_widget(form.task, {'attr': {'class': 'task_field'}}) }}#}
+           </div>
+           
+           <div style='margin-bottom:20px'>
+            {{ form_label(welcomeForm.prezime) }}
+            {{ form_errors(welcomeForm.prezime) }}
+            {{ form_widget(welcomeForm.prezime, {'attr': {'class': 'beige'}})}}
+           </div>
+           
+            <div style='margin-bottom:20px'>
+            {{ form_label(welcomeForm.maticnibroj) }}
+            {{ form_errors(welcomeForm.maticnibroj) }}
+            {{ form_widget(welcomeForm.maticnibroj, {'attr': {'class': 'yellow'}})}}
+           </div>
+           
+           <div style='margin-bottom:20px'>
+            {{ form_label(welcomeForm.datum) }}
+            {{ form_errors(welcomeForm.datum) }}
+            {{ form_widget(welcomeForm.datum)}}
+           </div>
+
+           <div>
+            {{ form_widget(welcomeForm.save) }}
+           </div>
+           
+{#           {{ form_widget(welcomeForm) }}#}
+
+        {{ form_end(welcomeForm) }}
+       
+      
+      
+
+      </div>
+      
+      
+      
+      
+      
+      <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage></b></p>
+    </center>
+    
+  
+   
+{% endblock %}
