@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Welcome user!{% endblock %}
+{% block title %}Welcome!{% endblock %}
 {% block stylesheets %}
   <style>
     body {
@@ -24,44 +24,64 @@
       cursor: pointer;
     }
 
-    input.beige {
+   input.beige {
       background-color: beige;
     }
 
-    input.orange {
+   input.orange {
       background-color:  #ffdd99;
     }
 
     input.yellow {
       background-color:  #ffff99;
+   
     }
+    
+    li {
+      color: red;
+      font-size: 11px; 
+      list-style: none;
+      text-align: left;
+    }
+      
+    label {
+      text-align: left;  
+    }
+     
+    .input-holder {
+      margin-bottom:20px;
+      text-align: left;   
+    }  
   </style>
 {% endblock %}
 
 {% block body %}
   <center>
     <div style='padding: 50px;background-color: lightblue;'>
-      <h1 style='font-size: 30px;text-align: center;'>Welcome {% if firstName is defined %}{{ firstName }} {% else%} User {% endif %} </h1>
+      <h1 style='font-size: 30px;text-align: center;'>Welcome {% if firstName is defined %}{{ firstName }} {% else%} User {% endif %} <br/> 
+                                                      Vas maticni broj je: {% if matbr is defined %}{{ matbr }}{% endif %}<br/>
+                                                      Vas datum rodjenja je: {% if datrodj is defined %}{{ datrodj|date('Y-m-d') }}{% endif %}
+      </h1>
     </div>
 
     <div style='width: 300px; padding: 75px;background-color: gray;'>
       {{ form_start(welcomeForm) }}
-        <div style='margin-bottom:20px'>
+        <div class="input-holder">
           {{ form_label(welcomeForm.ime)}}
-          {{ form_errors(welcomeForm.ime) }}
           {{ form_widget(welcomeForm.ime, {'attr': {'class': 'orange'}})}}
+          {{ form_errors(welcomeForm.ime)}}
         </div>
 
-        <div style='margin-bottom:20px'>
-          {{ form_label(welcomeForm.prezime) }}
-          {{ form_errors(welcomeForm.prezime) }}
+        <div class="input-holder">
+          {{ form_label(welcomeForm.prezime)}}       
           {{ form_widget(welcomeForm.prezime, {'attr': {'class': 'beige'}})}}
+          {{ form_errors(welcomeForm.prezime) }}
         </div>
 
-        <div style='margin-bottom:20px'>
-          {{ form_label(welcomeForm.maticnibroj) }}
-          {{ form_errors(welcomeForm.maticnibroj) }}
+        <div class="input-holder">
+          {{ form_label(welcomeForm.maticnibroj) }}     
           {{ form_widget(welcomeForm.maticnibroj, {'attr': {'class': 'yellow'}})}}
+          {{ form_errors(welcomeForm.maticnibroj) }}
         </div>
 
         <div style='margin-bottom:20px'>

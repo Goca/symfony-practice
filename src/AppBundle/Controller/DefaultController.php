@@ -23,6 +23,7 @@ class DefaultController extends Controller
         // return $this->render('default/index.html.twig'); // vraca difoltnu pocetnu stranicu
     }
     
+    
     /**
      * @Route("/form", name="form")
      */
@@ -66,7 +67,6 @@ class DefaultController extends Controller
     }
     
     
-    
     /**
      * @Route("/user", name="user")
      */
@@ -97,7 +97,6 @@ class DefaultController extends Controller
     }
     
     
-    
     /**
      * @Route("/welcome", name="welcome")
      */
@@ -114,7 +113,10 @@ class DefaultController extends Controller
           
           $formData = $form->getData();
           
-          return $this->render('@App/Default/welcome.html.twig', ['firstName'=>$formData['ime'],'welcomeForm'=>$form->createView()]); 
+          return $this->render('@App/Default/welcome.html.twig', ['firstName'=>$formData['ime'],
+                                                                  'matbr'=>$formData['maticnibroj'],
+                                                                  'datrodj'=>$formData['datum'],
+                                                                  'welcomeForm'=>$form->createView()]); 
           
         }
         
@@ -128,15 +130,12 @@ class DefaultController extends Controller
     }
     
     
-    
     /**
      * @Route("/form3", name="form3")
      */
     public function form3Action()
     {
         $form = $this->createForm(UserForm::class);
-        
-        
         return $this->render('@App/Default/form3.html.twig', ['userForm'=>$form->createView()]); // bilo je myForm,
     }                                                                                            // stavili smo user Form da prati klasu
         

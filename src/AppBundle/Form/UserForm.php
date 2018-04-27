@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
 class UserForm extends AbstractType
+
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
