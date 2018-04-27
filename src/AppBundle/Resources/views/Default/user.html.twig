@@ -23,8 +23,7 @@
 
     a {
       color: red;
-    }
-    
+    }  
   </style>
 {% endblock %}
   
@@ -37,38 +36,9 @@
       <div style='width: 300px; padding: 75px;background-color: gray;'>
          {{ form_start(userForm) }}
           <form action="{{ path('user') }}" method='POST'>
-            
-            {#{{ form_widget(welcomeForm.ime) }}
-            {{ form_widget(welcomeForm.save) }}
-            {{ form_errors(welcomeForm) }}
-            {{ form_rest(welcomeForm) }}
-             {{ form_row(form.age) }}
-          
-{#          {{ form_end(userForm) }}
-          </form>
-  
-{#        {{ form_row(welcomeForm) }} stampa sve i labele i errors-e i widget-te #}
-{#        {{ form_label(welcomeForm) }} stamapa samo labele#} 
-{#        {{ form_errors(welcomeForm) }} stampa errorse, sledecom naredbom stampamo ono sto nama treba #} 
-{#        {{ form_start(welcomeForm) }}#}
-     
-
-          
-           
               {{ form_widget(userForm) }}
-
          {{ form_end(userForm) }}
-       
-      
-      
-
       </div>
-      
-    
-      
       <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage></b></p>
-    </center>
-    
-  
-   
+    </center> 
 {% endblock %}
