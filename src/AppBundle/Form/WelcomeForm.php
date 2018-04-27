@@ -23,7 +23,7 @@ class WelcomeForm extends AbstractType
           ->add('ime', TextType::class, array(
               'label' => 'Ime',
               'constraints' => array(
-                new NotBlank(),
+                new NotBlank(['message' => 'Ime je obavezno'] ),
                 new Length(array('min' => 2,'minMessage' => 'Ime je obavezno'))),                      
               'attr' => array(
                 'placeholder' => 'Upisi ime',
@@ -31,7 +31,7 @@ class WelcomeForm extends AbstractType
           ->add('prezime', TextType::class, array(
               'label' => 'Prezime',
               'constraints' => array(
-                new NotBlank(),
+                new NotBlank(['message' => 'Prezime je obavezno'] ),
                 new Length(array('min' => 2,'minMessage' => 'Prezime je obavezno'))),  
               'attr' => array(
                 'placeholder' => 'Upisi prezime',
@@ -39,11 +39,11 @@ class WelcomeForm extends AbstractType
           ->add('maticnibroj', TextType::class, array(
               'label' => 'Maticni broj',
               'constraints' => array(
-                new NotBlank(),
-                new Length(array('min' => 13,'minMessage' => 'Upisite opet maticni broj'))), 
+                new NotBlank(['message' => 'Vas maticni broj je obavezan'] ),
+                new Length(array('min' => 13,'minMessage' => 'nevazeci maticni broj'))), 
               'attr' => array(
                   'placeholder' => 'Upisi maticni broj',                
-                )))
+                ))) 
           ->add('datum', DateType::class, array(
               'label' => 'Datum rodjenja',
               'attr' => array(

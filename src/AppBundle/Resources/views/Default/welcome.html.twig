@@ -28,7 +28,7 @@
       background-color: beige;
     }
 
-   input.orange {
+    input.orange {
       background-color:  #ffdd99;
     }
 
@@ -38,16 +38,17 @@
     }
     
     li {
-      color: red;
-      font-size: 11px; 
+      color:#6f2020;
+      font-size: 13px; 
       list-style: none;
       text-align: left;
     }
-      
-    label {
-      text-align: left;  
+    
+    ul {
+      padding: 0;
+      margin:0
     }
-     
+    
     .input-holder {
       margin-bottom:20px;
       text-align: left;   
@@ -58,14 +59,14 @@
 {% block body %}
   <center>
     <div style='padding: 50px;background-color: lightblue;'>
-      <h1 style='font-size: 30px;text-align: center;'>Welcome {% if firstName is defined %}{{ firstName }} {% else%} User {% endif %} <br/> 
-                                                      Vas maticni broj je: {% if matbr is defined %}{{ matbr }}{% endif %}<br/>
-                                                      Vas datum rodjenja je: {% if datrodj is defined %}{{ datrodj|date('Y-m-d') }}{% endif %}
+      <h1 style='font-size: 30px;text-align: center;'>
+          Welcome {% if firstName is defined %}{{ firstName }} {% else%} User {% endif %} <br/> 
+ {% if matbr is defined %}Vas maticni broj je: {{ matbr }}{% endif %}<br/>{% if datrodj is defined %}Vas datum rodjenja je:{{ datrodj|date('Y-m-d') }}{% endif %}
       </h1>
     </div>
 
     <div style='width: 300px; padding: 75px;background-color: gray;'>
-      {{ form_start(welcomeForm) }}
+      {{ form_start(welcomeForm, {'attr': {'novalidate': 'novalidate'}}) }}
         <div class="input-holder">
           {{ form_label(welcomeForm.ime)}}
           {{ form_widget(welcomeForm.ime, {'attr': {'class': 'orange'}})}}
