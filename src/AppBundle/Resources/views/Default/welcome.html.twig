@@ -61,10 +61,9 @@
     <div style='padding: 50px;background-color: lightblue;'>
       <h1 style='font-size: 30px;text-align: center;'>
           Welcome {% if firstName is defined %}{{ firstName }} {% else%} User {% endif %} <br/> 
- {% if matbr is defined %}Vas maticni broj je: {{ matbr }}{% endif %}<br/>{% if datrodj is defined %}Vas datum rodjenja je:{{ datrodj|date('Y-m-d') }}{% endif %}
+ {% if matbr is defined %}Vas maticni broj je: {{ matbr }}{% endif %}<br/>{% if datrodj is defined %}Vas datum rodjenja je: {{ datrodj|date('Y-m-d') }}{% endif %}
       </h1>
-    </div>
-
+    </div>    
     <div style='width: 300px; padding: 75px;background-color: gray;'>
       {{ form_start(welcomeForm, {'attr': {'novalidate': 'novalidate'}}) }}
         <div class="input-holder">

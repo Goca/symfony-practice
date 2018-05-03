@@ -17,7 +17,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        
         return $this->render('@App/Default/index.html.twig'); // , moze da ima i drugi argument ... array(), ne mora
         
         // return $this->render('default/index.html.twig'); // vraca difoltnu pocetnu stranicu
@@ -31,7 +31,7 @@ class DefaultController extends Controller
     {
         $form= $this->createFormBuilder()              // ovo se koristi samo jednom i nikada vise, bukvalno
                 ->add('personName', TextType::class)  // ako bi nam trebalo jos koje polje, pisali bismo npr.-> add ('prezime', Texttype::class i tako onoliko puta koliko nam treba
-                ->getForm();                         // $form = $this->createForm(UserForm::class); menja sve ovo,broj polja,dodajemo kroy klasu
+                ->getForm();                         // $form = $this->createForm(UserForm::class); menja sve ovo,broj polja,dodajemo kroz klasu
         
         return $this->render('@App/Default/form.html.twig', ['userForm'=>$form->createView()]); 
     }
@@ -113,10 +113,15 @@ class DefaultController extends Controller
           
           $formData = $form->getData();
           
+          $formnew = $this->createForm(WelcomeForm::class, null, [      // zelimo da zapamtimo praznu formu, kreiramo je jos jednom i pametimo u nekoj promenljivoj formnew
+            'action' => $this->generateUrl('welcome')         
+        ]); 
+          
           return $this->render('@App/Default/welcome.html.twig', ['firstName'=>$formData['ime'],
                                                                   'matbr'=>$formData['maticnibroj'],
                                                                   'datrodj'=>$formData['datum'],
-                                                                  'welcomeForm'=>$form->createView()]); 
+                                                                  'welcomeForm'=>$formnew->createView()]); // vratimo praznu, koju samo sacuvali u formnew
+          
           
         }
         
