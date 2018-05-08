@@ -51,7 +51,7 @@ class WelcomeForm extends AbstractType
                 )))       
           ->add('save', SubmitType::class, array('label' => 'Submit'))                                         
         ;                                                                                                         
-    }   
+    } 
 }
   
 

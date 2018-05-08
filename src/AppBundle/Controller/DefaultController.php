@@ -118,6 +118,7 @@ class DefaultController extends Controller
         ]); 
           
           return $this->render('@App/Default/welcome.html.twig', ['firstName'=>$formData['ime'],
+                                                                  'lastName'=> $formData['prezime'],
                                                                   'matbr'=>$formData['maticnibroj'],
                                                                   'datrodj'=>$formData['datum'],
                                                                   'welcomeForm'=>$formnew->createView()]); // vratimo praznu, koju samo sacuvali u formnew
@@ -127,12 +128,16 @@ class DefaultController extends Controller
         
 //        $form = $this->createForm(UserForm::class, null, [      
 //            'action' => $this->generateUrl('user')         
-//        ]); 
-        
+//        ]);           
         return $this->render('@App/Default/welcome.html.twig', ['welcomeForm'=>$form->createView()]); // , moze da ima i drugi argument, sada ima view ... array(), ne mora
         
         // return $this->render('default/index.html.twig'); // vraca difoltnu pocetnu, index.html.twig
     }
+    
+//  nova akcija za update form
+    /**
+     * @Route("/update", name="update")
+     */
     
     
     /**
