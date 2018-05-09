@@ -34,11 +34,11 @@
       </div>
   
       <div style='width: 300px; padding: 75px;background-color: gray;'>
-         {{ form_start(userForm) }}
+        {{ form_start(userForm) }}
           <form action="{{ path('user') }}" method='POST'>
-              {{ form_widget(userForm) }}
-              {{ form_end(userForm) }}               
+            {{ form_widget(userForm) }}
+            {{ form_end(userForm) }}               
       </div>
-      <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage></b></p>
+            <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage></a></b></p>
     </center> 
 {% endblock %}
