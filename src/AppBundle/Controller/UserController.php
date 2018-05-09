@@ -13,13 +13,40 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class UserController extends Controller
+
 {
- /**
-  * @Route("/create", name="create")
-  */
-  public function createAction()
-  {
+ 
+  
+  /**
+    * @Route("/user", name="user")
+    */
+  public function userAction(Request $request)          
+  { 
     
+    $form = $this->createForm(WelcomeForm::class, null, [      
+        'action' => $this->generateUrl('user')         
+      ]); 
+       
+    $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {         
+          
+        $formData = $form->getData();
+          
+        return $this->render('@App/Default/user.html.twig', ['firstName'=>$formData['ime'],'userForm'=>$form->createView()]); 
+         
+        }
+        
+      return $this->render('@App/Default/user.html.twig', ['userForm'=>$form->createView()]);        
+    }
+    
+    
+  /**
+   * @Route("/create", name="create")
+   */
+  public function createAction()          
+  {
+  
     $entityManager = $this->getDoctrine()->getManager();
     $user = new User();
     
@@ -37,10 +64,11 @@ class UserController extends Controller
   }
 
   
- /**
-  * @Route("/formatd", name="formatd")
-  */
+  /**
+   * @Route("/formatd", name="formatd")
+   */
   public function formatdAction()
+          
   {
     
     $entityManager = $this->getDoctrine()->getManager();
@@ -62,10 +90,10 @@ class UserController extends Controller
   }
   
 
- /**
-  * @Route("/update", name="update") // akcija kojom cemo upisiviti Usera u bazu
-  */
-  public function updateAction(Request $request)  
+  /**
+   * @Route("/update", name="update") // akcija kojom cemo upisiviti Usera u bazu
+   */
+  public function updateAction(Request $request)          
   {
     
     $entityManager = $this->getDoctrine()->getManager();
@@ -78,18 +106,18 @@ class UserController extends Controller
        
     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {                
-          $formData = $form->getData();                 
+      if ($form->isSubmitted() && $form->isValid()) {                
+      $formData = $form->getData();                 
           
-          $user->setIme($formData['ime']);             
-          $user->setPrezime($formData['prezime']);
-          $user->setMaticnibroj($formData['maticnibroj']);   
-          $user->setDatum($formData['datum']);
+      $user->setIme($formData['ime']);             
+      $user->setPrezime($formData['prezime']);
+      $user->setMaticnibroj($formData['maticnibroj']);   
+      $user->setDatum($formData['datum']);
                     
-               $entityManager->persist($user);   
-               $entityManager->flush();
+        $entityManager->persist($user);   
+        $entityManager->flush();
 
-               return new Response('Saved new User with id '.$user->getId());
+          return new Response('Saved new User with id '.$user->getId());
         
         }
         
@@ -100,20 +128,18 @@ class UserController extends Controller
    /**
     * @Route("/new", name="app_user_new")
     */
-   public function newAction(Request $request)
-  {
+   public function newAction(Request $request)           
+   {
     
     $user = new User();
     $form = $this->createForm(UserEditForm::class,$user,[      
             'action' => $this->generateUrl('app_user_new')         
         ]);      
-                    
-            
+                                
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {       
       $entityManager = $this->getDoctrine()->getManager(); 
-
 
       $entityManager->persist($user);
       $entityManager->flush();
@@ -121,7 +147,7 @@ class UserController extends Controller
       return $this->redirect($this->generateUrl(
           'app_user_new'
       ));
-    }
+     }
         
     return $this->render('@App/User/new.html.twig', ['welcomeForm'=>$form->createView()]);
  
