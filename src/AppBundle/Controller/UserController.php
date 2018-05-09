@@ -8,15 +8,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User;
 use AppBundle\Form\WelcomeForm;
+use AppBundle\Form\UserEditForm;
 use Symfony\Component\Validator\Constraints\DateTime;
-
 
 
 class UserController extends Controller
 {
-  /**
- * @Route("/create", name="create")
- */
+ /**
+  * @Route("/create", name="create")
+  */
   public function createAction()
   {
     
@@ -37,9 +37,9 @@ class UserController extends Controller
   }
 
   
-  /**
- * @Route("/formatd", name="formatd")
- */
+ /**
+  * @Route("/formatd", name="formatd")
+  */
   public function formatdAction()
   {
     
@@ -62,17 +62,18 @@ class UserController extends Controller
   }
   
 
-   /**
- * @Route("/update", name="update") // akcija kojom cemo upisiviti Usera u bazu
- */
-  public function updateAction(Request $request)
+ /**
+  * @Route("/update", name="update") // akcija kojom cemo upisiviti Usera u bazu
+  */
+  public function updateAction(Request $request)  
   {
     
     $entityManager = $this->getDoctrine()->getManager();
+    
     $user = new User();
     
     $form = $this->createForm(WelcomeForm::class, null, [      
-            'action' => $this->generateUrl('update')         //
+            'action' => $this->generateUrl('update')         
         ]); 
        
     $form->handleRequest($request);
@@ -80,7 +81,7 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {                
           $formData = $form->getData();                 
           
-          $user->setIme($formData['ime']);
+          $user->setIme($formData['ime']);             
           $user->setPrezime($formData['prezime']);
           $user->setMaticnibroj($formData['maticnibroj']);   
           $user->setDatum($formData['datum']);
@@ -91,11 +92,38 @@ class UserController extends Controller
                return new Response('Saved new User with id '.$user->getId());
         
         }
-
         
-      return $this->render('@App/Default/welcome.html.twig', ['welcomeForm'=>$form->createView()]);
+        return $this->render('@App/Default/welcome.html.twig', ['welcomeForm'=>$form->createView()]);
                 
-  }
-        
-}   
+  }      
+  
+   /**
+    * @Route("/new", name="app_user_new")
+    */
+   public function newAction(Request $request)
+  {
     
+    $user = new User();
+    $form = $this->createForm(UserEditForm::class,$user,[      
+            'action' => $this->generateUrl('app_user_new')         
+        ]);      
+                    
+            
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {       
+      $entityManager = $this->getDoctrine()->getManager(); 
+
+
+      $entityManager->persist($user);
+      $entityManager->flush();
+
+      return $this->redirect($this->generateUrl(
+          'app_user_new'
+      ));
+    }
+        
+    return $this->render('@App/User/new.html.twig', ['welcomeForm'=>$form->createView()]);
+ 
+   }
+}

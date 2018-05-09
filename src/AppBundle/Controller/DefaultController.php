@@ -134,12 +134,7 @@ class DefaultController extends Controller
         // return $this->render('default/index.html.twig'); // vraca difoltnu pocetnu, index.html.twig
     }
     
-//  nova akcija za update form
-    /**
-     * @Route("/update", name="update")
-     */
-    
-    
+ 
     /**
      * @Route("/form3", name="form3")
      */
