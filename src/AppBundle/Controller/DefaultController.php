@@ -2,12 +2,11 @@
 
 namespace AppBundle\Controller;
 
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use AppBundle\Form\UserForm;
-use AppBundle\Form\WelcomeForm;
 
 
 class DefaultController extends Controller
@@ -73,7 +72,7 @@ class DefaultController extends Controller
   public function welcomeAction(Request $request)
   {
         
-    $form = $this->createForm(WelcomeForm::class, null, [      
+    $form = $this->createForm(CreateForm::class, null, [      
       'action' => $this->generateUrl('welcome')         
     ]); 
        
@@ -83,20 +82,20 @@ class DefaultController extends Controller
       
         $formData = $form->getData();
           
-        $formnew = $this->createForm(WelcomeForm::class, null, [      // zelimo da zapamtimo praznu formu, kreiramo je jos jednom i pametimo u nekoj promenljivoj formnew
+        $formnew = $this->createForm(CreateForm::class, null, [      // zelimo da zapamtimo praznu formu, kreiramo je jos jednom i pametimo u nekoj promenljivoj formnew
         'action' => $this->generateUrl('welcome')         
          ]); 
           
-      return $this->render('@App/Default/welcome.html.twig', [ 
+      return $this->render('@App/User/create.html.twig', [ 
         'firstName'=>$formData['ime'],
         'lastName'=> $formData['prezime'],
         'matbr'=>$formData['maticni_broj'],
         'datrodj'=>$formData['datum'],
-        'welcomeForm'=>$formnew->createView() // vratimo praznu formu, koju samo sacuvali u formnew    
+        'createForm'=>$formnew->createView() // vratimo praznu formu, koju samo sacuvali u formnew    
       ]);                 
     }
                   
-    return $this->render('@App/Default/welcome.html.twig', ['welcomeForm'=>$form->createView()]); // , moze da ima i drugi argument, sada ima view ... array(), ne mora
+    return $this->render('@App/User/create.html.twig', ['createForm'=>$form->createView()]); // , moze da ima i drugi argument, sada ima view ... array(), ne mora
         
         // return $this->render('default/index.html.twig'); // vraca difoltnu pocetnu, index.html.twig
   }
