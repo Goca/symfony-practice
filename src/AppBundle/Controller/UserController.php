@@ -124,9 +124,9 @@ class UserController extends Controller
   }
   
   
-   /**
-    * @Route("/create", name="app_user_create")
-    */
+  /**
+   * @Route("/create", name="app_user_create")
+   */
   public function newAction(Request $request)           // akcija kojom cemo upisiviti Usera u bazu ( drugi nacin )
   {
     
