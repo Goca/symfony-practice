@@ -14,15 +14,15 @@
       width: 100%;
     }
 
-    input[type=button] {
+    input[type=submit] {
       background-color: #4CAF50;
       border: none;
       color: white;
       padding: 16px 32px;
       text-decoration: none;
-      margin: 20px 5px;;
-      cursor: pointer;
-    }
+      margin: 10px 5px;;
+      cursor: pointer; }
+   
 
     input.beige {
       background-color: beige;
@@ -73,7 +73,7 @@
         </div>
 
         <div class="input-holder">
-          {{ form_label(welcomeForm.prezime)}}       
+          {{ form_label(welcomeForm.prezime)}}                               
           {{ form_widget(welcomeForm.prezime, {'attr': {'class': 'beige'}})}}
           {{ form_errors(welcomeForm.prezime) }}
         </div>
@@ -89,12 +89,12 @@
           {{ form_errors(welcomeForm.datum) }}
           {{ form_widget(welcomeForm.datum)}}
         </div>
-
-        <div>
-          {{ form_widget(welcomeForm.save) }}
-        </div>
+        
+        <input type="submit" value="Snimi">
+        
       {{ form_end(welcomeForm) }}
+      
     </div>
-    <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage></b></p>
+      <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage></a></b></p>
   </center>
 {% endblock %}

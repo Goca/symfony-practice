@@ -17,13 +17,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 class UserEditForm extends AbstractType
-
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-            
+  
+  public function buildForm(FormBuilderInterface $builder, array $options)            
     {
-       $builder
-          ->add('ime', TextType::class, array(
+      $builder
+        ->add('ime', TextType::class, array(
               'label' => 'Ime',
               'constraints' => array(
                 new NotBlank(['message' => 'Ime je obavezno'] ),
@@ -31,7 +30,7 @@ class UserEditForm extends AbstractType
               'attr' => array(
                 'placeholder' => 'Upisi ime',
                 )))
-          ->add('prezime', TextType::class, array(
+        ->add('prezime', TextType::class, array(
               'label' => 'Prezime',
               'constraints' => array(
                 new NotBlank(['message' => 'Prezime je obavezno'] ),
@@ -39,7 +38,7 @@ class UserEditForm extends AbstractType
               'attr' => array(
                 'placeholder' => 'Upisi prezime',
                 )))
-          ->add('maticnibroj', TextType::class, array(
+        ->add('maticnibroj', TextType::class, array(
               'label' => 'Maticni broj',
               'constraints' => array(
                 new NotBlank(['message' => 'Vas maticni broj je obavezan'] ),
@@ -47,7 +46,7 @@ class UserEditForm extends AbstractType
               'attr' => array(
                   'placeholder' => 'Upisi maticni broj',                
                 ))) 
-          ->add('datum', DateType::class, array(
+        ->add('datum', DateType::class, array(
               'label' => 'Datum rodjenja',
               'attr' => array(
                   'placeholder' => 'Upisi datum rodjenja',
@@ -55,11 +54,11 @@ class UserEditForm extends AbstractType
         ;                                                                                                         
     }
       
-     public function configureOptions(OptionsResolver $resolver)
+  public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'data_class' => User::class,   
-        ]);                               
+      $resolver->setDefaults([
+         'data_class' => User::class,   
+      ]);                               
     }                                        
 }
   

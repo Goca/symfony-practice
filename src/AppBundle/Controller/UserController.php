@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,6 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class UserController extends Controller
-
 {
  
   
@@ -33,16 +33,16 @@ class UserController extends Controller
           
         $formData = $form->getData();
           
-        return $this->render('@App/Default/user.html.twig', ['firstName'=>$formData['ime'],'userForm'=>$form->createView()]); 
+        return $this->render('@App/User/create.html.twig', ['firstName'=>$formData['ime'],'userForm'=>$form->createView()]); 
          
         }
         
-      return $this->render('@App/Default/user.html.twig', ['userForm'=>$form->createView()]);        
-    }
+      return $this->render('@App/User/create.html.twig', ['userForm'=>$form->createView()]);        
+  }
     
     
   /**
-   * @Route("/create", name="create")
+   * @Route("/new", name="new")
    */
   public function createAction()          
   {
@@ -55,7 +55,6 @@ class UserController extends Controller
     $user->setMaticnibroj(1234567890222);
     $datum = new \DateTime();
     $user->setDatum($datum);
-
     
     $entityManager->persist($user);
     $entityManager->flush();
@@ -67,15 +66,14 @@ class UserController extends Controller
   /**
    * @Route("/formatd", name="formatd")
    */
-  public function formatdAction()
-          
+  public function formatdAction()          
   {
     
     $entityManager = $this->getDoctrine()->getManager();
     $user = new User();
     
-    $user->setIme('Marija');
-    $user->setPrezime('Budic');
+    $user->setIme('Ana');
+    $user->setPrezime('Anic');
     $user->setMaticnibroj(1234567890123);
    
     $datetime = new \DateTime();
@@ -121,19 +119,20 @@ class UserController extends Controller
         
         }
         
-        return $this->render('@App/Default/welcome.html.twig', ['welcomeForm'=>$form->createView()]);
+        return $this->render('@App/User/create.html.twig', ['welcomeForm'=>$form->createView()]);
                 
-  }      
+  }
+  
   
    /**
-    * @Route("/new", name="app_user_new")
+    * @Route("/create", name="app_user_create")
     */
-   public function newAction(Request $request)           
-   {
+  public function newAction(Request $request)           // akcija kojom cemo upisiviti Usera u bazu ( drugi nacin )
+  {
     
-    $user = new User();
+    $user = new User();                                   //entitet User
     $form = $this->createForm(UserEditForm::class,$user,[      
-            'action' => $this->generateUrl('app_user_new')         
+            'action' => $this->generateUrl('app_user_create')         
         ]);      
                                 
     $form->handleRequest($request);
@@ -145,11 +144,11 @@ class UserController extends Controller
       $entityManager->flush();
 
       return $this->redirect($this->generateUrl(
-          'app_user_new'
+          'app_user_create'
       ));
      }
         
-    return $this->render('@App/User/new.html.twig', ['welcomeForm'=>$form->createView()]);
+    return $this->render('@App/User/create.html.twig', ['welcomeForm'=>$form->createView()]);
  
-   }
+  }
 }
