@@ -18,8 +18,8 @@ class UserController extends Controller
  
   
   /**
-    * @Route("/user", name="user")
-    */
+   * @Route("/user", name="user")
+   */
   public function userAction(Request $request)          
   { 
     
@@ -35,7 +35,7 @@ class UserController extends Controller
           
         return $this->render('@App/User/create.html.twig', ['firstName'=>$formData['ime'],'userForm'=>$form->createView()]); 
          
-        }
+      }
         
       return $this->render('@App/User/create.html.twig', ['userForm'=>$form->createView()]);        
   }
@@ -117,7 +117,7 @@ class UserController extends Controller
 
           return new Response('Saved new User with id '.$user->getId());
         
-        }
+      }
         
         return $this->render('@App/User/create.html.twig', ['welcomeForm'=>$form->createView()]);
                 
@@ -146,7 +146,7 @@ class UserController extends Controller
       return $this->redirect($this->generateUrl(
           'app_user_create'
       ));
-     }
+    }
         
     return $this->render('@App/User/create.html.twig', ['welcomeForm'=>$form->createView()]);
  
