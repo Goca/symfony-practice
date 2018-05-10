@@ -122,33 +122,31 @@ class UserController extends Controller
         return $this->render('@App/User/create.html.twig', ['welcomeForm'=>$form->createView()]);
                 
   }
-  
-  
-  /**
-   * @Route("/create", name="app_user_create")
-   */
-  public function newAction(Request $request)           // akcija kojom cemo upisiviti Usera u bazu ( drugi nacin )
-  {
-    
-    $user = new User();                                   //entitet User
-    $form = $this->createForm(UserEditForm::class,$user,[      
-            'action' => $this->generateUrl('app_user_create')         
-        ]);      
-                                
-    $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {       
-      $entityManager = $this->getDoctrine()->getManager(); 
+    /**
+     * @Route("/create", name="app_user_create")
+     */
+    public function newAction(Request $request)           // akcija kojom cemo upisiviti Usera u bazu ( drugi nacin )
+    {
+        $user = new User();                                   //entitet User
+        $form = $this->createForm(UserEditForm::class, $user, [
+            'action' => $this->generateUrl('app_user_create')
+        ]);
 
-      $entityManager->persist($user);
-      $entityManager->flush();
+        $form->handleRequest($request);
 
-      return $this->redirect($this->generateUrl(
-          'app_user_create'
-      ));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirect($this->generateUrl(
+                'app_user_create'
+            ));
+        }
+
+        return $this->render('@App/User/create.html.twig', ['welcomeForm' => $form->createView()]);
+
     }
-        
-    return $this->render('@App/User/create.html.twig', ['welcomeForm'=>$form->createView()]);
- 
-  }
 }
