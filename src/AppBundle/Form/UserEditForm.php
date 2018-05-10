@@ -38,7 +38,7 @@ class UserEditForm extends AbstractType
               'attr' => array(
                 'placeholder' => 'Upisi prezime',
                 )))
-        ->add('maticnibroj', TextType::class, array(
+        ->add('maticni_broj', TextType::class, array(
               'label' => 'Maticni broj',
               'constraints' => array(
                 new NotBlank(['message' => 'Vas maticni broj je obavezan'] ),
@@ -48,6 +48,7 @@ class UserEditForm extends AbstractType
                 ))) 
         ->add('datum', DateType::class, array(
               'label' => 'Datum rodjenja',
+              'years' => range(date('Y') - 48, date('Y') + 50),              
               'attr' => array(
                   'placeholder' => 'Upisi datum rodjenja',
                 )))

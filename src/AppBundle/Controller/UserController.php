@@ -14,9 +14,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class UserController extends Controller
-{
- 
-  
+{  
   /**
    * @Route("/user", name="user")
    */
@@ -24,8 +22,8 @@ class UserController extends Controller
   { 
     
     $form = $this->createForm(WelcomeForm::class, null, [      
-        'action' => $this->generateUrl('user')         
-      ]); 
+      'action' => $this->generateUrl('user')         
+    ]); 
        
     $form->handleRequest($request);
 
@@ -45,8 +43,7 @@ class UserController extends Controller
    * @Route("/new", name="new")
    */
   public function createAction()          
-  {
-  
+  {  
     $entityManager = $this->getDoctrine()->getManager();
     $user = new User();
     
@@ -67,8 +64,7 @@ class UserController extends Controller
    * @Route("/formatd", name="formatd")
    */
   public function formatdAction()          
-  {
-    
+  {    
     $entityManager = $this->getDoctrine()->getManager();
     $user = new User();
     
@@ -78,8 +74,7 @@ class UserController extends Controller
    
     $datetime = new \DateTime();
     $newDate = $datetime->createFromFormat('d/m/Y', '01/01/2001');
-    $user->setDatum($newDate);
-    
+    $user->setDatum($newDate);    
     
     $entityManager->persist($user);
     $entityManager->flush();
@@ -92,15 +87,14 @@ class UserController extends Controller
    * @Route("/update", name="update") // akcija kojom cemo upisiviti Usera u bazu
    */
   public function updateAction(Request $request)          
-  {
-    
+  {    
     $entityManager = $this->getDoctrine()->getManager();
     
     $user = new User();
     
     $form = $this->createForm(WelcomeForm::class, null, [      
-            'action' => $this->generateUrl('update')         
-        ]); 
+      'action' => $this->generateUrl('update')         
+    ]); 
        
     $form->handleRequest($request);
 
@@ -109,31 +103,30 @@ class UserController extends Controller
           
       $user->setIme($formData['ime']);             
       $user->setPrezime($formData['prezime']);
-      $user->setMaticnibroj($formData['maticnibroj']);   
+      $user->setMaticnibroj($formData['$maticni_broj']);   
       $user->setDatum($formData['datum']);
                     
-        $entityManager->persist($user);   
-        $entityManager->flush();
+      $entityManager->persist($user);   
+      $entityManager->flush();
 
-          return new Response('Saved new User with id '.$user->getId());
+        return new Response('Saved new User with id '.$user->getId());
         
       }
         
-        return $this->render('@App/User/create.html.twig', ['welcomeForm'=>$form->createView()]);
+    return $this->render('@App/User/create.html.twig', ['welcomeForm'=>$form->createView()]);
                 
   }
-  
+ 
   
   /**
    * @Route("/create", name="app_user_create")
    */
   public function newAction(Request $request)           // akcija kojom cemo upisiviti Usera u bazu ( drugi nacin )
-  {
-    
+  {    
     $user = new User();                                   //entitet User
     $form = $this->createForm(UserEditForm::class,$user,[      
-            'action' => $this->generateUrl('app_user_create')         
-        ]);      
+      'action' => $this->generateUrl('app_user_create')         
+    ]);      
                                 
     $form->handleRequest($request);
 

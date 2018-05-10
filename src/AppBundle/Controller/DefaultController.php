@@ -90,7 +90,7 @@ class DefaultController extends Controller
       return $this->render('@App/Default/welcome.html.twig', [ 
         'firstName'=>$formData['ime'],
         'lastName'=> $formData['prezime'],
-        'matbr'=>$formData['maticnibroj'],
+        'matbr'=>$formData['maticni_broj'],
         'datrodj'=>$formData['datum'],
         'welcomeForm'=>$formnew->createView() // vratimo praznu formu, koju samo sacuvali u formnew    
       ]);                 
