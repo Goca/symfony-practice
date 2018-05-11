@@ -2,15 +2,16 @@
 {% block title %}Lista Usera{% endblock %}
 {% block stylesheets %}
   <style>
-  table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-    text-align: left;
-    margin-top: 20px;
-  }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+      text-align: left;
+      margin-top: 20px;
+    }
   </style>
 {% endblock %} 
+
 {% block body %}
   <div class="container">
     <table class="table table-striped">
@@ -27,7 +28,8 @@
         <td>{{ user.ime }}</td>
         <td>{{ user.prezime }}</td>
         <td>{{ user.maticnibroj }}</td> 
-        <td>{{ user.datum |date('d.m.Y.')}}</td>
+        <td>{{ user.datum |date('d.m.Y.')}}</td>        
+        <a href="{{ path('app_user_deleteid',{'id': user.id})}}" style="text-align:center">Delete</a>  
       </tr>
       {% endfor %}
     </table>

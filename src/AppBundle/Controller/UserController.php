@@ -160,20 +160,23 @@ class UserController extends Controller
   /*
    * @Route("/delete/{id}", name="app_user_deleteid")  
    */
-   public function deleteAction($id)
+  public function deleteAction($id)
   {    
     $em = $this->getDoctrine()->getManager();
 	$user = $em->getRepository('AppBundle:Users')->find($id);
 
 	if (!$user) { // ne postoji user
       throw $this->createNotFoundException('No User found for id '.$id);
-    }
+    } 
+    
     else{
       $em->remove($user);
       $em->flush();
       
-      $users = $repository->findAll();
+      $repository = $this->getDoctrine()
+      ->getRepository('AppBundle:User');
       
+      $users = $repository->findAll();      
       return $this->render('@App/User/list.html.twig', array('users' => $users));
       
       //return $this->redirect($this->generateUrl('app_user_deletedid'), 301);
