@@ -158,9 +158,9 @@ class UserController extends Controller
   
   
   /*
-   * @Route("/delete", name="app_user_delete")  
+   * @Route("/delete/{id}", name="app_user_deleteid")  
    */
-   public function deleteAction()
+   public function deleteAction($id)
   {    
     $em = $this->getDoctrine()->getManager();
 	$user = $em->getRepository('AppBundle:Users')->find($id);
@@ -171,7 +171,12 @@ class UserController extends Controller
     else{
       $em->remove($user);
       $em->flush();
-      return $this->redirect($this->generateUrl('app_user_list'), 301);
+      
+      $users = $repository->findAll();
+      
+      return $this->render('@App/User/list.html.twig', array('users' => $users));
+      
+      //return $this->redirect($this->generateUrl('app_user_deletedid'), 301);
     }
   }    
 }
