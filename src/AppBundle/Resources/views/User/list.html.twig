@@ -12,16 +12,14 @@
 
 {% block body %}
   <table style="width:100%">
-    <tr>
-      <th>Id</th>
+    <tr>    
       <th>Ime</th>
       <th>Prezime</th>
       <th>maticni broj</th>
       <th>datum rodjenja</th>
     </tr>
     {% for user in users %}
-    <tr>
-      <td>{{ user.id }}</td>
+    <tr>    
       <td>{{ user.ime }}</td>
       <td>{{ user.prezime }}</td>
       <td>{{ user.maticnibroj }}</td> 

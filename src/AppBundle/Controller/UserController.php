@@ -9,8 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User;
 use AppBundle\Form\User\CreateForm;
-use Symfony\Component\Validator\Constraints\DateTime;
-use Doctrine\ORM\Repository;
 
 
 class UserController extends Controller
@@ -152,11 +150,10 @@ class UserController extends Controller
   public function listAction()
   {  
     $repository = $this->getDoctrine()
-      ->getRepository('AppBundle:User');
-		
-	$users = $repository->findAll();
-        
-        return $this->render('@App/User/list.html.twig', array('users' => $users));		       
+    ->getRepository('AppBundle:User'); // AppBundle\Entity\User;
+	
+	$users = $repository->findAll();        
+    return $this->render('@App/User/list.html.twig', array('users' => $users));		       
   }
   
   
@@ -169,13 +166,12 @@ class UserController extends Controller
 	$user = $em->getRepository('AppBundle:Users')->find($id);
 
 	if (!$user) { // ne postoji user
-		throw $this->createNotFoundException('No User found for id '.$id);
-        
-	} else {
-		$em->remove($user);
-		$em->flush();
-		return $this->redirect($this->generateUrl('app_user_list'), 301);
-      }
-  }
-    
+      throw $this->createNotFoundException('No User found for id '.$id);
+    }
+    else{
+      $em->remove($user);
+      $em->flush();
+      return $this->redirect($this->generateUrl('app_user_list'), 301);
+    }
+  }    
 }
