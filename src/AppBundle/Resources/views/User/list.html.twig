@@ -1,3 +1,4 @@
+{% extends 'base.html.twig' %}
 {% block title %}Lista Usera{% endblock %}
 {% block stylesheets %}
   <style>
@@ -6,27 +7,31 @@
     border-collapse: collapse;
     padding: 5px;
     text-align: left;
+    margin-top: 20px;
   }
   </style>
 {% endblock %} 
-
 {% block body %}
-  <table style="width:100%">
-    <tr>    
-      <th>Ime</th>
-      <th>Prezime</th>
-      <th>maticni broj</th>
-      <th>datum rodjenja</th>
-    </tr>
-    {% for user in users %}
-    <tr>    
-      <td>{{ user.ime }}</td>
-      <td>{{ user.prezime }}</td>
-      <td>{{ user.maticnibroj }}</td> 
-      <td>{{ user.datum |date('d.m.Y.')}}</td>
-    </tr>
-    {% endfor %}
-  </table>
+  <div class="container">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>    
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>maticni broj</th>
+          <th>datum rodjenja</th>
+        </tr>
+      </thead>
+      {% for user in users %}
+      <tr>    
+        <td>{{ user.ime }}</td>
+        <td>{{ user.prezime }}</td>
+        <td>{{ user.maticnibroj }}</td> 
+        <td>{{ user.datum |date('d.m.Y.')}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
 {% endblock %}
 
 
