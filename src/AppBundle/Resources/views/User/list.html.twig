@@ -1,0 +1,28 @@
+
+{% block title %}Lista Usera{% endblock %}
+{% block stylesheets %}
+  <style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: left;
+  }
+  </style>
+{% endblock %} 
+
+{% block body %}
+  {% for user in users %}
+    <table style="width:100%">
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.ime }}</td>
+        <td>{{ user.prezime }}</td>
+        <td>{{ user.maticnibroj }}</td> 
+        <td>{{ user.datum |date('d.m.Y.')}}</td>
+      </tr>
+    </table>
+  {% endfor %}
+{% endblock %}
+
+
