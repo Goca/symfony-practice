@@ -12,8 +12,8 @@
 {% endblock %} 
 
 {% block body %}
-  {% for user in users %}
-    <table style="width:100%">
+  <table style="width:100%">
+    {% for user in users %}
       <tr>
         <td>{{ user.id }}</td>
         <td>{{ user.ime }}</td>
@@ -21,8 +21,8 @@
         <td>{{ user.maticnibroj }}</td> 
         <td>{{ user.datum |date('d.m.Y.')}}</td>
       </tr>
-    </table>
-  {% endfor %}
+    {% endfor %}
+  </table>
 {% endblock %}
 
 
