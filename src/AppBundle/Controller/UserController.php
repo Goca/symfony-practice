@@ -13,6 +13,7 @@ use AppBundle\Form\User\CreateForm;
 
 class UserController extends Controller
 {  
+  
   /**
    * @Route("/user", name="user")
    */
@@ -82,7 +83,9 @@ class UserController extends Controller
   
 
   /**
-   * @Route("/update", name="update") // akcija kojom cemo upisiviti Usera u bazu
+   * akcija kojom cemo upisiviti Usera u bazu
+   * 
+   * @Route("/update", name="update") 
    */
   public function updateAction(Request $request)          
   {    
@@ -121,7 +124,7 @@ class UserController extends Controller
    */
   public function createAction(Request $request)           // akcija kojom cemo upisiviti Usera u bazu ( drugi nacin )
   {    
-    $user = new User();                                   //entitet User
+    $user = new User();                                    //entitet User
     $form = $this->createForm(CreateForm::class,$user,[      
       'action' => $this->generateUrl('app_user_create')         
     ]);      
@@ -155,10 +158,9 @@ class UserController extends Controller
 	$users = $repository->findAll();        
     return $this->render('@App/User/list.html.twig', array('users' => $users));		       
   }
-  
-  
+   
   /*
-   * @Route("/delete/{id}", name="app_user_deleteid")  
+   * @Route("/delete-user/{id}", name="app_user_delete")  
    */
   public function deleteAction($id)
   {    
@@ -173,13 +175,7 @@ class UserController extends Controller
       $em->remove($user);
       $em->flush();
       
-      $repository = $this->getDoctrine()
-      ->getRepository('AppBundle:User');
-      
-      $users = $repository->findAll();      
-      return $this->render('@App/User/list.html.twig', array('users' => $users));
-      
-      //return $this->redirect($this->generateUrl('app_user_deletedid'), 301);
+      return $this->redirectToRoute('app_user_list');
     }
   }    
 }
