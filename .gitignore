@@ -9,7 +9,7 @@
 /var/cache/*
 /var/sessions/*
 
-/bin/
+
 /composer.phar
 /vendor/
 /web/bundles/
