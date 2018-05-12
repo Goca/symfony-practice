@@ -34,7 +34,7 @@ class User {
     /**
      * @ORM\Column(type="string")
      */
-    private $maticnibroj;
+    private $maticni_broj;
     
     
     /**
@@ -54,6 +54,7 @@ class User {
         $this->id = $id;
     }
     
+    
     public function getIme()
     {
         return $this->ime;
@@ -63,7 +64,7 @@ class User {
     {
         $this->ime = $ime;
     }
-  
+     
     
     public function getPrezime()
     {
@@ -74,18 +75,18 @@ class User {
     {
         $this->prezime = $prezime;
     }
+      
     
-    
-     public function getMaticnibroj()
+   public function getMaticnibroj()
     {
-        return $this->maticnibroj;
+        return $this->maticni_broj;
     }
     
-    public function setMaticnibroj($maticnibroj)
+    public function setMaticnibroj($maticni_broj)
     {
-        $this->maticnibroj = $maticnibroj;
+        $this->maticni_broj=$maticni_broj;
     }
-    
+      
     
      public function getDatum()
     {
