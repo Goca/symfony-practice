@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}Lista Usera{% endblock %}
+{% block stylesheets %}
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+      text-align: left;
+      margin-top: 20px;
+    }
+  </style>
+{% endblock %} 
+
+{% block body %}
+  <div class="container">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>    
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>maticni broj</th>
+          <th>datum rodjenja</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      {% for user in users %}
+      <tr>    
+        <td>{{ user.ime }}</td>
+        <td>{{ user.prezime }}</td>
+        <td>{{ user.maticnibroj }}</td> 
+        <td>{{ user.datum |date('d.m.Y.')}}</td>        
+{#        <td><a href="{{ path('app_user_delete', { 'id': user.id }) }}" style="text-align:center">Delete</a></td>  #}
+        <td><a href="{{ path('app_user_create') }}" style="text-align:center">Create</a></td>  
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}
+
+

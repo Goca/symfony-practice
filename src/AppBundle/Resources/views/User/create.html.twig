@@ -66,35 +66,35 @@
       </h1>
     </div>    
     <div style='width: 300px; padding: 75px;background-color: gray;'>
-      {{ form_start(welcomeForm, {'attr': {'novalidate': 'novalidate'}}) }}
+      {{ form_start(createForm, {'attr': {'novalidate': 'novalidate'}}) }}
       
         <div class="input-holder">
-          {{ form_label(welcomeForm.ime)}}
-          {{ form_widget(welcomeForm.ime, {'attr': {'class': 'orange'}})}}
-          {{ form_errors(welcomeForm.ime)}}
+          {{ form_label(createForm.ime)}}
+          {{ form_widget(createForm.ime, {'attr': {'class': 'orange'}})}}
+          {{ form_errors(createForm.ime)}}
         </div>
 
         <div class="input-holder">
-          {{ form_label(welcomeForm.prezime)}}                               
-          {{ form_widget(welcomeForm.prezime, {'attr': {'class': 'beige'}})}}
-          {{ form_errors(welcomeForm.prezime) }}
+          {{ form_label(createForm.prezime)}}                               
+          {{ form_widget(createForm.prezime, {'attr': {'class': 'beige'}})}}
+          {{ form_errors(createForm.prezime) }}
         </div>
 
         <div class="input-holder">
-          {{ form_label(welcomeForm.maticni_broj) }}     
-          {{ form_widget(welcomeForm.maticni_broj, {'attr': {'class': 'yellow'}})}}
-          {{ form_errors(welcomeForm.maticni_broj) }}
+          {{ form_label(createForm.maticni_broj) }}     
+          {{ form_widget(createForm.maticni_broj, {'attr': {'class': 'yellow'}})}}
+          {{ form_errors(createForm.maticni_broj) }}
         </div>
 
         <div style='margin-bottom:20px'>
-          {{ form_label(welcomeForm.datum) }}
-          {{ form_errors(welcomeForm.datum) }}
-          {{ form_widget(welcomeForm.datum)}}
+          {{ form_label(createForm.datum) }}
+          {{ form_errors(createForm.datum) }}
+          {{ form_widget(createForm.datum)}}
         </div>
         
         <input type="submit" value="Snimi">
         
-      {{ form_end(welcomeForm) }}
+      {{ form_end(createForm) }}
       
     </div>
     <p><b><a href="{{ path('homepage') }}" style="text-align:center">Homepage></a></b></p>
