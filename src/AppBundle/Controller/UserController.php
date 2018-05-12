@@ -160,10 +160,10 @@ class UserController extends Controller
         return $this->render('@App/User/list.html.twig', ['users' => $users]);
     }
 
-    /*
+    /**
      * @Route("/delete-user/{id}", name="app_user_delete")
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:Users')->find($id);
