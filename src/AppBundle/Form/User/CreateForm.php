@@ -17,43 +17,43 @@ class CreateForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ime', TextType::class, array(
-                'label' => 'Ime',
-                'constraints' => array(
+            ->add('ime', TextType::class, [
+                'label'       => 'Ime',
+                'constraints' => [
                     new NotBlank(['message' => 'Ime je obavezno']),
-                    new Length(array('min' => 2, 'minMessage' => 'Ime je obavezno')),
-                ),
-                'attr' => array(
+                    new Length(['min' => 2, 'minMessage' => 'Ime je obavezno']),
+                ],
+                'attr'        => [
                     'placeholder' => 'Upisi ime',
-                ),
-            ))
-            ->add('prezime', TextType::class, array(
-                'label' => 'Prezime',
-                'constraints' => array(
+                ],
+            ])
+            ->add('prezime', TextType::class, [
+                'label'       => 'Prezime',
+                'constraints' => [
                     new NotBlank(['message' => 'Prezime je obavezno']),
-                    new Length(array('min' => 2, 'minMessage' => 'Prezime je obavezno')),
-                ),
-                'attr' => array(
+                    new Length(['min' => 2, 'minMessage' => 'Prezime je obavezno']),
+                ],
+                'attr'        => [
                     'placeholder' => 'Upisi prezime',
-                ),
-            ))
-            ->add('maticni_broj', TextType::class, array(
-                'label' => 'Maticni broj',
-                'constraints' => array(
+                ],
+            ])
+            ->add('maticni_broj', TextType::class, [
+                'label'       => 'Maticni broj',
+                'constraints' => [
                     new NotBlank(['message' => 'Vas maticni broj je obavezan']),
-                    new Length(array('min' => 13, 'minMessage' => 'nevazeci maticni broj')),
-                ),
-                'attr' => array(
+                    new Length(['min' => 13, 'minMessage' => 'nevazeci maticni broj']),
+                ],
+                'attr'        => [
                     'placeholder' => 'Upisi maticni broj',
-                ),
-            ))
-            ->add('datum', DateType::class, array(
+                ],
+            ])
+            ->add('datum', DateType::class, [
                 'label' => 'Datum rodjenja',
                 'years' => range(date('Y') - 48, date('Y') + 50),
-                'attr' => array(
+                'attr'  => [
                     'placeholder' => 'Upisi datum rodjenja',
-                ),
-            ));
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
