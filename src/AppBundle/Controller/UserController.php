@@ -159,6 +159,7 @@ class UserController extends Controller
 
         return $this->render('@App/User/list.html.twig', ['users' => $users]);
     }
+    
 
     /**
      * @Route("/delete-user/{id}", name="app_user_delete")
@@ -176,5 +177,35 @@ class UserController extends Controller
 
             return $this->redirectToRoute('app_user_list');
         }
+    }
+    
+    
+    /**
+     * @Route("/edit-user/{id}", name="app_user_edit")
+     */
+    public function editAction(Request $request, $id)           // akcija kojom cemo editovati Usera iz baze
+    {
+      
+      $em = $this->getDoctrine()->getManager();
+      $user = $em->getRepository('AppBundle:User')->find($id);
+        
+      $form = $this->createForm(CreateForm::class, $user, [                                 // trebalo bi napraviti novu formu 
+            'action' => $this->generateUrl('app_user_edit', array('id'=> $user->getId()))   //forma za edit i forma za upis novog usera moze se razlikovati
+        ]);                                                                                 // public function generateUrl($route, $parameters = array())     
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+      $entityManager = $this->getDoctrine()->getManager();
+            
+      $entityManager->persist($user);
+      $entityManager->flush();
+
+      return $this->redirectToRoute(  // 
+        'app_user_list'
+            );
+        }
+
+      return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+
     }
 }
