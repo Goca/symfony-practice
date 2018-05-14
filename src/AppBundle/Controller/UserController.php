@@ -166,7 +166,7 @@ class UserController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('AppBundle:Users')->find($id);
+        $user = $em->getRepository('AppBundle:User')->find($id);
 
         if (!$user) { // ne postoji user
             throw $this->createNotFoundException('No User found for id ' . $id);
