@@ -159,6 +159,7 @@ class UserController extends Controller
     return $this->render('@App/User/list.html.twig', array('users' => $users));		       
   }
    
+  
   /**
    * @Route("/delete-user/{id}", name="app_user_delete")  
    */
