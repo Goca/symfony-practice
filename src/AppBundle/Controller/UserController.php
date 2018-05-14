@@ -200,10 +200,8 @@ class UserController extends Controller
       $entityManager->persist($user);
       $entityManager->flush();
 
-      return $this->redirectToRoute(  // 
-        'app_user_list'
-            );
-        }
+        return $this->redirectToRoute('app_user_list');
+      }
 
       return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
 

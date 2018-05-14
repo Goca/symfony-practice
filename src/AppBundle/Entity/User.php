@@ -41,6 +41,8 @@ class User
      * @ORM\Column(type="datetime")
      */
     private $datum;
+    
+    
 
 
     public function getId()
