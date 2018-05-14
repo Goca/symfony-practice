@@ -30,7 +30,7 @@
         <td>{{ user.prezime }}</td>
         <td>{{ user.maticnibroj }}</td> 
         <td>{{ user.datum |date('d.m.Y.')}}</td>        
-        <td><a href="{{ path('app_user_delete', { 'id': user.id }) }}" style="text-align:center">Delete</a></td>  
+        <td><a href="{{ path('app_user_delete', { 'id': user.id }) }}" style="text-align:center">Delete</a></td>
       </tr>
       {% endfor %}
     </table>
