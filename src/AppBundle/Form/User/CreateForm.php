@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+
 class CreateForm extends AbstractType
 {
 
@@ -55,7 +56,7 @@ class CreateForm extends AbstractType
           'placeholder' => 'Upisi datum rodjenja',
         ],
       ]);
-    }
+  }
 
     public function configureOptions(OptionsResolver $resolver)
     {
