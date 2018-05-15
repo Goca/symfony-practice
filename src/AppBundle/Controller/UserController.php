@@ -39,7 +39,7 @@ class UserController extends Controller
 
 
     /**
-     * @Route("/new", name="new")
+     * @Route("/new-user", name="new_user")
      */
     public function newAction()
     {

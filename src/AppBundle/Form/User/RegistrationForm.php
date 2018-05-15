@@ -26,7 +26,7 @@ class RegistrationForm  extends AbstractType
                 'first_options'  => array ('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
-        ->add('reg', SubmitType::class, array('label' => 'Registration'));        
+//        ->add('reg', SubmitType::class, array('label' => 'Registration'));        
         ;
     }
 
