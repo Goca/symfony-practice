@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}Welcome!{% endblock %}
+{% block body %}  
+  {{ form_start(newForm)}}      
+    {{ form_label(newForm.title)}}
+    {{ form_widget(newForm.title)}}    
+    <input type="submit" value="Zapamti">    
+  {{ form_end(newForm) }}      
+{% endblock %}
+

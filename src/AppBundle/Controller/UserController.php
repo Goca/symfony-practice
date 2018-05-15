@@ -10,6 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
+
+/**
+ * @Route("/user")
+ */
 class UserController extends Controller
 {
 
@@ -39,7 +43,7 @@ class UserController extends Controller
 
 
     /**
-     * @Route("/new-user", name="new_user")
+     * @Route("/new", name="new")
      */
     public function newAction()
     {
@@ -205,6 +209,5 @@ class UserController extends Controller
 
       return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
 
-    }
-            
+    }            
 }
