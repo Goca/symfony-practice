@@ -10,8 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 * @ORM\Entity()
 * @ORM\Table(name="book_category")
 */
-  
-class BookCategory 
+  class BookCategory 
 {
   
     /**

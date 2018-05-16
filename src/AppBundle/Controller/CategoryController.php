@@ -52,7 +52,7 @@ class CategoryController extends Controller
         $em = $this->getDoctrine()->getManager();
         $category = $em->getRepository('AppBundle:BookCategory')->find($id);
         
-        $form = $this->createForm(CreateForm::class, $category, [                                
+        $form = $this->createForm(CategoryForm::class, $category, [                                
             'action' => $this->generateUrl('app_category_edit', array('id'=> $category->getId()))   
         ]);                                                                                 
         $form->handleRequest($request);
@@ -100,7 +100,7 @@ class CategoryController extends Controller
 
         $categorys = $repository->findAll();
 
-        return $this->render('@App/BookCategory/list.html.twig', ['categorys' => $categorys]);
+        return $this->render('@App/BookCategory/listcategory.html.twig', ['categorys' => $categorys]);
     }
     
 }
