@@ -12,28 +12,30 @@
   </style>
 {% endblock %} 
 
-{% block body %}    
-  <center>
-    <form action="{{ path('app_category_new') }}">           
-      <input type="submit" value="Create New Category">
-    </form>               
-  </center>
-  <div class="container">
-    <table class="table table-striped">
-      <thead class="thead-dark">
-        <tr>    
-          <th>Title</th>
-          <th>Actions</th>          
-        </tr>
-      </thead>
-      {% for category in categorys %}
-      <tr>    
-        <td>{{ category.title }}</td>
-        <td><center><a href="{{ path('app_category_delete', { 'id': category.id }) }}" style="text-align:center">Delete</a><br/>
+{% block body %}
+  <div  style='padding: 50px;'>
+    <center>
+      <form action="{{ path('app_category_new') }}">           
+        <input type="submit" value="Create New Category">
+      </form>               
+    </center>
+    <div class="container">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>    
+            <th>Title</th>
+            <th>Actions</th>          
+          </tr>
+        </thead>
+        {% for category in categorys %}
+          <tr>    
+          <td>{{ category.title }}</td>
+          <td><center><a href="{{ path('app_category_delete', { 'id': category.id }) }}" style="text-align:center">Delete</a><br/>
             <a href="{{ path('app_category_edit', { 'id': category.id }) }}" style="text-align:center">Edit</a> </center></td>   
-      </tr>
-      {% endfor %}
-    </table>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
   </div>
 {% endblock %}
 
