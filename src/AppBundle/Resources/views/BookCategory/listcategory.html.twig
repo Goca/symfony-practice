@@ -29,9 +29,9 @@
         </thead>
         {% for category in categorys %}
           <tr>    
-          <td>{{ category.title }}</td>
-          <td><center><a href="{{ path('app_category_delete', { 'id': category.id }) }}" style="text-align:center">Delete</a><br/>
-            <a href="{{ path('app_category_edit', { 'id': category.id }) }}" style="text-align:center">Edit</a> </center></td>   
+            <td>{{ category.title }}</td>
+            <td><center><a href="{{ path('app_category_delete', { 'id': category.id }) }}" style="text-align:center">Delete</a><br/>
+                <a href="{{ path('app_category_edit', { 'id': category.id }) }}" style="text-align:center">Edit</a> </center></td>   
           </tr>
         {% endfor %}
       </table>
