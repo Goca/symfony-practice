@@ -16,46 +16,46 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class CreateForm extends AbstractType
 {
 
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder
-      ->add('ime', TextType::class, [
-        'label'       => 'Ime',
-        'constraints' => [
-          new NotBlank(['message' => 'Ime je obavezno']),
-          new Length(['min' => 2, 'minMessage' => 'Ime je obavezno']),
-        ],
-        'attr'        => [
-          'placeholder' => 'Upisi ime',
-        ],
-      ])
-      ->add('prezime', TextType::class, [
-        'label'       => 'Prezime',
-        'constraints' => [
-           new NotBlank(['message' => 'Prezime je obavezno']),
-           new Length(['min' => 2, 'minMessage' => 'Prezime je obavezno']),
-        ],
-        'attr'        => [
-          'placeholder' => 'Upisi prezime',
-        ],
-      ])
-      ->add('maticni_broj', TextType::class, [
-        'label'       => 'Maticni broj',
-        'constraints' => [
-          new NotBlank(['message' => 'Vas maticni broj je obavezan']),
-          new Length(['min' => 13, 'minMessage' => 'nevazeci maticni broj']),
-            ],
-        'attr'        => [
-          'placeholder' => 'Upisi maticni broj',
-        ],
-      ])
-      ->add('datum', DateType::class, [
-        'label' => 'Datum rodjenja',
-        'years' => range(date('Y') - 48, date('Y') + 50),
-        'attr'  => [
-          'placeholder' => 'Upisi datum rodjenja',
-        ],
-      ]);
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('ime', TextType::class, [
+                'label'=> 'Ime',
+                'constraints' => [
+                new NotBlank(['message' => 'Ime je obavezno']),
+                new Length(['min' => 2, 'minMessage' => 'Ime je obavezno']),
+                ],
+                'attr' => [
+                'placeholder' => 'Upisi ime',
+                ],
+              ])
+            ->add('prezime', TextType::class, [
+                'label'=> 'Prezime',
+                'constraints' => [
+                new NotBlank(['message' => 'Prezime je obavezno']),
+                new Length(['min' => 2, 'minMessage' => 'Prezime je obavezno']),
+              ],
+                'attr'=> [
+                'placeholder' => 'Upisi prezime',
+                ],
+              ])
+             ->add('maticni_broj', TextType::class, [
+                  'label'       => 'Maticni broj',
+                  'constraints' => [
+                  new NotBlank(['message' => 'Vas maticni broj je obavezan']),
+                  new Length(['min' => 13, 'minMessage' => 'nevazeci maticni broj']),
+                  ],
+                  'attr'        => [
+                  'placeholder' => 'Upisi maticni broj',
+                ],
+              ])
+              ->add('datum', DateType::class, [
+                  'label' => 'Datum rodjenja',
+                  'years' => range(date('Y') - 48, date('Y') + 50),
+                  'attr'  => [
+                  'placeholder' => 'Upisi datum rodjenja',
+                ],
+               ]);
   }
 
     public function configureOptions(OptionsResolver $resolver)

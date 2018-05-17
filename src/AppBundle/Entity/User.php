@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -18,6 +18,7 @@ class User
      * @ORM\Column(type="integer") // umesto type obicno pisemo name, jer je to ime kolone 
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
      */ 
     private $id;
 
@@ -65,7 +66,7 @@ class User
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $maticni_broj;
+    private $maticni_broj; // trebalo bi maticniBroj
 
 
     /**
@@ -163,7 +164,11 @@ class User
     {
         $this->datum = $datum;
     }
-
+    
+     public function __construct()
+    {
+        $this->books = new ArrayCollection();
+    }
 }
 
 

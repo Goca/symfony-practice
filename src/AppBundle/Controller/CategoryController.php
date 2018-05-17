@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+
 use AppBundle\Entity\BookCategory;
 use AppBundle\Form\BookCategory\CategoryForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/book-category") // obzirom da u dva kontrolera imamo new, kao rutu, resava se sve time sto se stavi anotacija ispred cele klase
- */                         // ovde i ispred celog UserControllera
+ */                         // (ovde ispred celog UserControllera)
 class CategoryController extends Controller
 {
     

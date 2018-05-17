@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}List of Publishers{% endblock %}
+{% block stylesheets %}
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+      text-align: left;
+      margin-top: 20px;
+    }
+  </style>
+{% endblock %} 
+
+{% block body %}
+  <div class="container">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>    
+          <th>Title</th>
+          <th>City</th>          
+          <th>Actions</th>
+        </tr>
+      </thead>
+      {% for publisher in publishers %}
+      <tr>    
+        <td>{{ publisher.title }}</td>
+        <td>{{ publisher.city }}</td>       
+        <td><center><a href="{{ path('app_publisher_delete', { 'id': publisher.id }) }}" style="text-align:center">Delete</a><br/>
+          <a href="{{ path('app_publisher_edit', { 'id': publisher.id }) }}" style="text-align:center">Edit</a> </center></td>       
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

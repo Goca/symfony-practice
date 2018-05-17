@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -17,6 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     * @ORM\Column(type="integer") 
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
+    * @ORM\OneToMany(targetEntity="Book", mappedBy="category")
     */ 
     private $id;
     
@@ -45,5 +47,10 @@ use Symfony\Component\Validator\Constraints as Assert;
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+    
+     public function __construct()
+    {
+        $this->books = new ArrayCollection();
     }
 }
