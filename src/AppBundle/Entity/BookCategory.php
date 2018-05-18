@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,14 +22,22 @@ use Doctrine\Common\Collections\ArrayCollection;
     * @ORM\OneToMany(targetEntity="Book", mappedBy="category")
     */ 
     private $id;
-    
-    
+        
     /**
      * @ORM\Column(type="string", length=80)
      */
     private $title;
-    
-    
+        
+     public function __construct()
+    {
+        $this->books = new ArrayCollection();
+    }
+        
+    public function __toString() 
+    {
+        return $this->title;
+    }   
+          
     public function getId()
     {
         return $this->id;
@@ -47,10 +56,5 @@ use Doctrine\Common\Collections\ArrayCollection;
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-    
-     public function __construct()
-    {
-        $this->books = new ArrayCollection();
-    }
+    }        
 }

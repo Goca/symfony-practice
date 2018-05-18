@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,59 +22,68 @@ class User
      * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
      */ 
     private $id;
-
     
     /**
      * @ORM\Column(type="string", length=255, unique=true) 
      * @Assert\NotBlank()
      */
     private $username;
-    
-    
+        
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
     private $email;
-    
-    
+       
     /**
      * @Assert\NotBlank()
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
-    
-    
+        
     /**
      * @ORM\Column(type="string", length=64)
      */
     private $password;
-    
-    
+       
     /**
      * @ORM\Column(type="string", nullable=true) // jedan isti entitet koristimo za razlicite forme (u ovom slucaju forma za registraciju i forma za kreiranje novih usera
      */                                          // ovako dozvoljavamo da ta polja budu null, da ih ne popunimo. Potrebna su nam samo 3 polja, a imamo ih  8
     private $ime;
-
 
     /**
      * @ORM\Column(type="string",nullable=true)
      */
     private $prezime;
 
-
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $maticni_broj; // trebalo bi maticniBroj
-
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $datum;
         
+    public function __construct()
+    {
+        $this->books = new ArrayCollection();
+    }    
+        
+    public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
+    {
+      
+      $fullname = $ime . $prezime;    
+      return $this->fullname;
+             
+    }
+        
+    public function __toString() 
+    {
+        return $this->fullname;
+    }
     
     public function getId()
     {
@@ -163,12 +173,8 @@ class User
     public function setDatum($datum)
     {
         $this->datum = $datum;
-    }
-    
-     public function __construct()
-    {
-        $this->books = new ArrayCollection();
-    }
+    }    
+   
 }
 
 

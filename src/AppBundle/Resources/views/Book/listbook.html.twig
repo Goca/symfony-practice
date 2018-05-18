@@ -11,7 +11,6 @@
     }
   </style>
 {% endblock %} 
-
 {% block body %}
   <div class="container">
     <table class="table table-striped">
@@ -32,8 +31,7 @@
         <td>{{ book.isbn }}</td>
         <td>{{ book.yearOfPublishing }}</td> 
         <td>{{ book.category)}}</td> 
-        <td>{{ book.author)}}</td> 
-        
+        <td>{{ book.author)}}</td>         
         <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>
           <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a> </center></td>       
       </tr>

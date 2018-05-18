@@ -15,7 +15,7 @@ class CategoryForm extends AbstractType
     {
           $builder
           ->add('title', TextType::class, [
-            'label'=> 'Title']);
+               'label'=> 'Title']);
     }
     
     public function configureOptions(OptionsResolver $resolver)

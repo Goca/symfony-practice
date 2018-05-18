@@ -10,6 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+
 
 
 class BookForm extends AbstractType   
@@ -23,16 +26,17 @@ class BookForm extends AbstractType
             'label'=> 'ISBN'])
             ->add('yearOfPublishing', DateType::class, [
                 'label'=> 'YearOfPublishing',
-                'years' => range(date('Y') - 48, date('Y') + 50),
-//                'months' => range (null),
-//                'days' => range (null)])  
-                ])
-            ->add('publisher', TextType::class, [
-            'label'=> 'Publisher'])
-            ->add('category', TextType::class, [
-            'label'=> 'Category']) 
-            ->add('author', TextType::class, [
-            'label'=> 'Author']) 
+                'years' => range(date('Y') - 48, date('Y') + 50)])
+            ->add('publisher', EntityType::class, [
+                'class' => 'AppBundle:Publisher',
+                'label'=> 'Publisher'])
+            ->add('category', EntityType::class, [
+                'class'=> 'AppBundle:BookCategory',
+                'label'=> 'Category']) 
+            ->add('author', EntityType::class, [
+                'required' => FALSE,
+                'class'=> 'AppBundle:User',
+                'label'=> 'Author'])              
             ->add('featured', CheckboxType::class, [
             'label'=> 'Featured']) ;                                    
     }

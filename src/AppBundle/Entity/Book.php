@@ -39,8 +39,7 @@ class Book
     * @ORM\Column(type="datetime", nullable=true)
     */
     private $yearOfPublishing;
-      
-    
+          
     /**    
     * @ORM\ManyToOne(targetEntity="Publisher")
     * @ORM\JoinColumn(name="publisher_id", referencedColumnName="id") // name="publisher_id", odnosi se na entitet u kom se nalazimo, referencedColumnName="id" se odnosi na Publisher-a, target entitet
@@ -80,8 +79,7 @@ class Book
     {
         $this->featured = FALSE;
     }    
-    
-    
+        
     public function getId()
     {
         return $this->id;

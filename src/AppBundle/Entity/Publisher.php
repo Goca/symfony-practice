@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -40,8 +41,17 @@ class Publisher
      * @ORM\Column(type="datetime", nullable=true) 
      */                                          
     private $updatedAt ;
-     
-    
+        
+     public function __construct()
+    {
+        $this->books = new ArrayCollection();
+    }    
+        
+    public function __toString() 
+    {
+        return $this->title;
+    }
+         
      public function getId()
     {
         return $this->id;
@@ -109,9 +119,5 @@ class Publisher
     {
         $this->updatedAt = new \DateTime();
     }
-        
-    public function __construct()
-    {
-        $this->books = new ArrayCollection();
-    }    
+           
 }

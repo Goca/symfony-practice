@@ -28,15 +28,9 @@ class BookController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {                                
+            $entityManager = $this->getDoctrine()->getManager();
             
-//            $book->setPublishrer($publisher_id);
-//            $book->setCategory($category_id);
-//            $book->setAuthor($author_id);
-                    
-            $entityManager = $this->getDoctrine()->getManager();            
-
-
             $entityManager->persist($book);
             $entityManager->flush();
 
@@ -48,7 +42,7 @@ class BookController extends Controller
         return $this->render('@App/Book/addbook.html.twig', ['addForm' => $form->createView()]);
 
     }          
-    
+      
     
     /**
      * @Route("/edit-book/{id}", name="app_book_edit")
@@ -77,6 +71,7 @@ class BookController extends Controller
 
     }
         
+    
     /**
      * @Route("/delete-book/{id}", name="app_book_delete")
      */
@@ -94,7 +89,8 @@ class BookController extends Controller
             return $this->redirectToRoute('app_book_list');
         }
     }
-        
+       
+    
     /**
      * @Route("/list-book", name="app_book_list")
      */

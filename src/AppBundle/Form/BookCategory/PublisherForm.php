@@ -15,10 +15,10 @@ class PublisherForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('title', TextType::class, [
-            'label'=> 'Title'])
-          ->add('city', TextType::class, [
-            'label'=> 'City']);                                           
+            ->add('title', TextType::class, [
+               'label'=> 'Title'])
+            ->add('city', TextType::class, [
+                'label'=> 'City']);                                           
     }
     
     public function configureOptions(OptionsResolver $resolver)
