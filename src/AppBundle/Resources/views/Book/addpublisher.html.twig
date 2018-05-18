@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block title %}Welcome!{% endblock %}
 {% block body %}  
+  <center>
   {{ form_start(pubForm)}}      
     {{ form_label(pubForm.title)}}
     {{ form_widget(pubForm.title)}}</br>
     {{ form_label(pubForm.city)}}
     {{ form_widget(pubForm.city)}}</br>    
     <input type="submit" value="Zapamti">    
-  {{ form_end(pubForm) }}      
+  {{ form_end(pubForm) }} 
+  </center>
 {% endblock %}
 

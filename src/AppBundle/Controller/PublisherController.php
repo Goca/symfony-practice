@@ -54,8 +54,8 @@ class PublisherController extends Controller
         $em = $this->getDoctrine()->getManager();
         $publisher = $em->getRepository('AppBundle:Publisher')->find($id);
         
-        $form = $this->createForm(CategoryForm::class, $category, [                                
-            'action' => $this->generateUrl('app_publisher_edit', array('id'=> $category->getId()))   
+        $form = $this->createForm(PublisherForm::class, $publisher, [                                
+            'action' => $this->generateUrl('app_publisher_edit', array('id'=> $publisher->getId()))   
         ]);
         
         $form->handleRequest($request);
@@ -89,7 +89,7 @@ class PublisherController extends Controller
               $em->remove($publisher);
               $em->flush();
 
-              return $this->redirectToRoute('app_publisher_add');
+              return $this->redirectToRoute('app_publisher_list');
           }
     }
     
@@ -100,7 +100,7 @@ class PublisherController extends Controller
     public function listAction()
     {
         $repository = $this->getDoctrine()
-            ->getRepository('AppBundle:Book'); // AppBundle\Entity\User;
+            ->getRepository('AppBundle:Publisher'); // AppBundle\Entity\User;
 
         $publishers = $repository->findAll();
 

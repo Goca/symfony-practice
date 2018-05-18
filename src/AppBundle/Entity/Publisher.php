@@ -30,19 +30,25 @@ class Publisher
      * @Assert\NotBlank()
      */
     private $title;
+    
+    /**
+     * @ORM\Column(type="string", length=255, unique=true) 
+     * @Assert\NotBlank()
+     */
+    private $city;
       
     /**
      * @ORM\Column(type="datetime", nullable=true) 
-     */                 
-    
+     */                     
     private $createdAt ;    
           
     /**
      * @ORM\Column(type="datetime", nullable=true) 
      */                                          
     private $updatedAt ;
-        
-     public function __construct()
+      
+    
+    public function __construct()
     {
         $this->books = new ArrayCollection();
     }    
@@ -52,7 +58,7 @@ class Publisher
         return $this->title;
     }
          
-     public function getId()
+    public function getId()
     {
         return $this->id;
     }
@@ -70,7 +76,7 @@ class Publisher
     public function setTitle($title)
     {        
         return$this->title = $title;
-    }
+    }     
     
     public function getCity()
     {
@@ -79,9 +85,8 @@ class Publisher
     
     public function setCity($city)
     {
-        return $this->city = $city;      
+        $this->city = $city;
     }
-    
     
    public function getCreatedAt()
     {
