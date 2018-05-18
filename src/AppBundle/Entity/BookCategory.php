@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 * @ORM\Table(name="book_category")
 */
   class BookCategory 
-{
+  {
   
     /**
     * @ORM\Column(type="integer") 
