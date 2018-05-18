@@ -99,7 +99,7 @@ class BookController extends Controller
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Book'); // AppBundle\Entity\User;
 
-        $categorys = $repository->findAll();
+        $books = $repository->findAll();
 
         return $this->render('@App/Book/listbook.html.twig', ['books' => $books]);
     }

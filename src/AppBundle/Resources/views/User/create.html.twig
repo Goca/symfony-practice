@@ -68,6 +68,8 @@
     <div style='width: 300px; padding: 75px;background-color: gray;'>
       {{ form_start(createForm, {'attr': {'novalidate': 'novalidate'}}) }}
       
+        {{ form_errors(createForm) }}
+      
         <div class="input-holder">
           {{ form_label(createForm.ime)}}
           {{ form_widget(createForm.ime, {'attr': {'class': 'orange'}})}}

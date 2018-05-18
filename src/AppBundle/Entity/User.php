@@ -24,32 +24,29 @@ class User
     private $id;
     
     /**
-     * @ORM\Column(type="string", length=255, unique=true) 
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, nullable=true) 
+     
      */
     private $username;
         
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @ORM\Column(type="string", length=255, nullable=true)    
      */
     private $email;
        
     /**
-     * @Assert\NotBlank()
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
         
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $password;
        
     /**
      * @ORM\Column(type="string", nullable=true) // jedan isti entitet koristimo za razlicite forme (u ovom slucaju forma za registraciju i forma za kreiranje novih usera
-     */                                          // ovako dozvoljavamo da ta polja budu null, da ih ne popunimo. Potrebna su nam samo 3 polja, a imamo ih  8
+     */                                          // ovako dozvoljavamo da ta polja budu null, da ne moramo da ih popunimo. Potrebna su nam samo 3 polja, a imamo ih  8
     private $ime;
 
     /**
@@ -73,11 +70,8 @@ class User
     }    
         
     public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
-    {
-      
-      $fullname = $ime . $prezime;    
-      return $this->fullname;
-             
+    {        
+      $this->fullname->$ime . $prezime;             
     }
         
     public function __toString() 

@@ -1,4 +1,4 @@
-% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block title %}List of Books{% endblock %}
 {% block stylesheets %}
   <style>
@@ -20,8 +20,7 @@
           <th>ISBN</th>
           <th>Year of publishing</th>
           <th>Category</th>
-          <th>Author</th>
-          <th>Featured</th>
+          <th>Author</th>          
           <th>Actions</th>
         </tr>
       </thead>
@@ -29,9 +28,9 @@
       <tr>    
         <td>{{ book.title }}</td>
         <td>{{ book.isbn }}</td>
-        <td>{{ book.yearOfPublishing }}</td> 
-        <td>{{ book.category)}}</td> 
-        <td>{{ book.author)}}</td>         
+        <td>{{ book.yearOfPublishing}}</td>        
+        <td>{{ book.category}}</td> 
+        <td>{{ book.author}}</td>         
         <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>
           <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a> </center></td>       
       </tr>

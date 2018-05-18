@@ -1,27 +1,30 @@
 {% extends 'base.html.twig' %}
 {% block title %}Welcome!{% endblock %}
-{% block body %}  
-  {{ form_start(addForm)}}      
-    {{ form_label(addForm.title)}}
-    {{ form_widget(addForm.title)}}
-    {{ form_errors(addForm.title)}}</br>
-    {{ form_label(addForm.isbn)}}
-    {{ form_widget(addForm.isbn)}}</br>
+{% block body %} 
+  <div style='padding: 50px'>
+    <center>
+      {{ form_start(addForm)}}      
+      {{ form_label(addForm.title)}}
+      {{ form_widget(addForm.title)}}
+      {{ form_errors(addForm.title)}}</br>
+      {{ form_label(addForm.isbn)}}
+      {{ form_widget(addForm.isbn)}}</br>
    
-    {{ form_label(addForm.yearOfPublishing.year)}}
-    {{ form_widget(addForm.yearOfPublishing.year)}}    
-    {{ form_widget(addForm.yearOfPublishing.month, {'attr': { 'style': 'display:none' }} ) }}
-    {{ form_widget(addForm.yearOfPublishing.day, {'attr': { 'style': 'display:none' }} ) }}            
-    {{ form_errors(addForm.yearOfPublishing)}}</br> 
+      {{ form_label(addForm.yearOfPublishing.year)}}
+      {{ form_widget(addForm.yearOfPublishing.year)}}    
+      {{ form_widget(addForm.yearOfPublishing.month, {'attr': { 'style': 'display:none' }} ) }}
+      {{ form_widget(addForm.yearOfPublishing.day, {'attr': { 'style': 'display:none' }} ) }}            
+      {{ form_errors(addForm.yearOfPublishing)}}</br> 
     
-    {{ form_label(addForm.publisher)}}
-    {{ form_widget(addForm.publisher)}}</br> 
-    {{ form_label(addForm.category)}}
-    {{ form_widget(addForm.category)}}</br> 
-    {{ form_label(addForm.author)}}
-    {{ form_widget(addForm.author)}}</br> 
-    {{ form_label(addForm.featured)}}
-    {{ form_widget(addForm.featured)}}</br>    
-    <input type="submit" value="Zapamti">    
-  {{ form_end(addForm) }}      
+      {{ form_label(addForm.publisher)}}
+      {{ form_widget(addForm.publisher)}}</br> 
+      {{ form_label(addForm.category)}}
+      {{ form_widget(addForm.category)}}</br> 
+      {{ form_label(addForm.author)}}
+      {{ form_widget(addForm.author)}}</br> 
+      {{ form_label(addForm.featured)}}
+      {{ form_widget(addForm.featured)}}</br>    
+      <input type="submit" value="Zapamti">          
+    </center>
+  </div>
 {% endblock %}
