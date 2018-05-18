@@ -71,12 +71,13 @@ class User
         
     public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
     {        
-      $this->fullname->$ime . $prezime;             
+     $fullname = $this->ime . ' ' . $this->prezime; 
+     return $fullname;
     }
         
     public function __toString() 
     {
-        return $this->fullname;
+        return $this->getFullName();
     }
     
     public function getId()
