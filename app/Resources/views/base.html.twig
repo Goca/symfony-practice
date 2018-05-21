@@ -7,21 +7,32 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     </head>
-    <body>     
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-             <a class="navbar-brand" href="{{ path('app_book_list') }}">Books</a>
-          </div>
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="{{ path('app_book_list') }}">Home</a></li>
-              <li><a href="{{ path('app_user_list') }}">Users</a></li>
-              <li><a href="{{ path('app_book_list') }}">Books</a></li>
-              <li><a href="{{ path('app_publisher_list') }}">Publishers</a></li>
-            </ul>
-          </div>
-      </nav>        
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    <body>       
+      </div>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{{ path('app_book_list') }}">Books</a>
+            </div>
+              <ul class="nav navbar-nav">           
+                <li><a href="{{ path('app_user_list') }}">Login</a></li>
+                <li><a href="{{ path('user_registration') }}">Register</a></li>             
+              </ul>
+            </div>
+        </nav>     
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+          <header class="masthead mb-auto">
+            <div class="inner">         
+              <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="{{ path('app_book_list') }}">Home</a>
+                <a class="nav-link" href="{{ path('app_user_list') }}">Users</a>
+                <a class="nav-link" href="{{ path('app_book_list') }}">Books</a>
+                <a class="nav-link" href="{{ path('app_publisher_list') }}">Publishers</a>
+              </nav>
+            </div>
+          </header>
+        </div>
+      {% block body %}{% endblock %}
+      {% block javascripts %}{% endblock %}
     </body>
 </html>
