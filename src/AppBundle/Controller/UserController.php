@@ -133,23 +133,39 @@ class UserController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager(); 
+        if ($form->isSubmitted())
+        {
+//            $formData = $form->getData();
+//            var_dump($form->get('plainPassword'));
+//            var_dump($form->get('plainPassword')->get('first_options')->getData());
+//            var_dump($formData['plainPassword']);
+//            die();
             
+            $password =['pass'=> $formData['password']];
             
- 
-            $entityManager->persist($user);
-            $entityManager->flush();
+                if (!( valid_pass(password)))
+                {
+                                  
+                     return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
 
-            return $this->redirect($this->generateUrl(
-                'app_user_create'  ));
-            }
+                }                  
+          
+                    if ($form->isValid())
+                    {
+                       $entityManager = $this->getDoctrine()->getManager(); 
+                         
+                    $entityManager->persist($user);
+                    $entityManager->flush();
 
-        return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+                    return $this->redirect($this->generateUrl(
+                           'app_user_create' ));   
+                    }
 
-    }
+        }
         
-       
+        return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+        
+    } 
     /**
      * @Route("/list", name="app_user_list")
      */
@@ -208,5 +224,17 @@ class UserController extends Controller
 
       return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
 
-    }            
+    }  
+    
+     private function valid_pass($password) 
+   {      
+        $r='/[0-9]/'; 
+  
+        if(preg_match_all($r,$password,$offset)<2) return FALSE;
+
+        if(strlen($password)<8) return FALSE;
+
+         return TRUE;
+    }
+    
 }

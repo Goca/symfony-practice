@@ -49,10 +49,11 @@ class User
      */
     private $plainPassword;
          
-    /**
-     * @ORM\Column(type="string", length=64, nullable=true)
+   /**          
+     * @ORM\Column(type="string", length=64)
      */
     private $password;
+
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -75,8 +76,8 @@ class User
     {
         return $this->getFullName();
     }
-    
-    
+        
+   
     public function getId()
     {
         return $this->id;        

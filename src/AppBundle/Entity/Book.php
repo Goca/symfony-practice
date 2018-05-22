@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -29,14 +30,12 @@ class Book
      */
     private $title;
     
-    /**    
-     * 
-     * @Assert\Isbn(
-     *              type = "isbn10",
-     *              message = "This value is not  valid.") 
-     * @ORM\Column(type="integer", unique=true) 
-     * @Assert\NotBlank()
-     */
+    /**
+    * @Assert\Isbn(
+    *     type = "isbn10",
+    *     message = "This value is not  valid."
+    * )
+    */
     private $isbn;
     
     /**
