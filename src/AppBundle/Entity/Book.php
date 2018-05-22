@@ -29,10 +29,14 @@ class Book
      */
     private $title;
     
-    /**
-    * @ORM\Column(type="integer", unique=true) 
-    * @Assert\NotBlank()
-    */
+    /**    
+     * 
+     * @Assert\Isbn(
+     *              type = "isbn10",
+     *              message = "This value is not  valid.") 
+     * @ORM\Column(type="integer", unique=true) 
+     * @Assert\NotBlank()
+     */
     private $isbn;
     
     /**

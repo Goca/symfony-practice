@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\EmailType ;
 
 
 /**
@@ -51,11 +52,10 @@ class UserController extends Controller
         $user = new User();
 
         $user->setIme('Petar');
-        $user->setPrezime('Petrovic');
-        $user->setMaticnibroj(1234567890222);
+        $user->setPrezime('Petrovic');       
         $datum = new \DateTime();
         $user->setDatum($datum);
-
+        
         $entityManager->persist($user);
         $entityManager->flush();
 
@@ -72,8 +72,7 @@ class UserController extends Controller
         $user = new User();
 
         $user->setIme('Ana');
-        $user->setPrezime('Anic');
-        $user->setMaticnibroj(1234567890123);
+        $user->setPrezime('Anic');       
 
         $datetime = new \DateTime();
         $newDate = $datetime->createFromFormat('d/m/Y', '01/01/2001');
@@ -107,8 +106,7 @@ class UserController extends Controller
             $formData = $form->getData();
 
             $user->setIme($formData['ime']);
-            $user->setPrezime($formData['prezime']);
-            $user->setMaticnibroj($formData['$maticni_broj']);
+            $user->setPrezime($formData['prezime']);           
             $user->setDatum($formData['datum']);
 
             $entityManager->persist($user);
@@ -136,21 +134,22 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-
+            $entityManager = $this->getDoctrine()->getManager(); 
+            
+            
+ 
             $entityManager->persist($user);
             $entityManager->flush();
 
             return $this->redirect($this->generateUrl(
-                'app_user_create'
-            ));
-        }
+                'app_user_create'  ));
+            }
 
         return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
 
     }
-
-
+        
+       
     /**
      * @Route("/list", name="app_user_list")
      */

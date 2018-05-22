@@ -24,27 +24,6 @@ class User
     private $id;
     
     /**
-     * @ORM\Column(type="string", length=255, nullable=true) 
-     
-     */
-    private $username;
-        
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)    
-     */
-    private $email;
-       
-    /**
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-        
-    /**
-     * @ORM\Column(type="string", length=64, nullable=true)
-     */
-    private $password;
-       
-    /**
      * @ORM\Column(type="string", nullable=true) // jedan isti entitet koristimo za razlicite forme (u ovom slucaju forma za registraciju i forma za kreiranje novih usera
      */                                          // ovako dozvoljavamo da ta polja budu null, da ne moramo da ih popunimo. Potrebna su nam samo 3 polja, a imamo ih  8
     private $ime;
@@ -53,16 +32,33 @@ class User
      * @ORM\Column(type="string",nullable=true)
      */
     private $prezime;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
+    
+     /**
+     * @ORM\Column(type="string", length=255, nullable=true) 
+     
      */
-    private $maticni_broj; // trebalo bi maticniBroj
+    private $username;
+         
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)    
+     */
+    private $email;
+    
+     /**
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+         
+    /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $password;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $datum;
+    private $datum ;
+    
         
     public function __construct()
     {
@@ -74,20 +70,22 @@ class User
      $fullname = $this->ime . ' ' . $this->prezime; 
      return $fullname;
     }
-        
+            
     public function __toString() 
     {
         return $this->getFullName();
     }
     
+    
     public function getId()
     {
-        return $this->id;
+        return $this->id;        
     }
 
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
     
       public function getUsername()
@@ -98,6 +96,7 @@ class User
     public function setUsername($username)
     {
         $this->username = $username;
+        return $this;
     }
     
      public function getEmail()
@@ -108,16 +107,18 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-    }   
+        return $this;
+    } 
     
-     public function getPlainPassword()
+    public function getPlainPassword()
     {
-       return $this->plainPassword;
+        return $this->plainPassword;
     }
 
-     public function setPlainPassword($password)
+    public function setPlainPassword($plainPassword)
     {
-        $this->plainPassword = $password;
+        $this->plainPassword = $plainPassword;
+        return $this;
     }
        
      public function getPassword()
@@ -128,6 +129,7 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
     }
 
     public function getIme()
@@ -138,6 +140,7 @@ class User
     public function setIme($ime)
     {
         $this->ime = $ime;
+        return $this;
     }
 
     public function getPrezime()
@@ -148,16 +151,7 @@ class User
     public function setPrezime($prezime)
     {
         $this->prezime = $prezime;
-    }
-
-    public function getMaticnibroj()
-    {
-        return $this->maticni_broj;
-    }
-
-    public function setMaticnibroj($maticni_broj)
-    {
-        $this->maticni_broj = $maticni_broj;
+        return $this;
     }
 
     public function getDatum()
@@ -168,8 +162,8 @@ class User
     public function setDatum($datum)
     {
         $this->datum = $datum;
-    }    
-   
+        return $this;
+    }       
 }
 
 
