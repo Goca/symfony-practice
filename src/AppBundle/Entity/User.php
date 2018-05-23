@@ -5,67 +5,39 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
+use FOS\UserBundle\Model\User as BaseUser;
 
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="user")
  */
-class User
+class User extends BaseUser
 {
 
     /**
-     * @ORM\Column(type="integer") // umesto type obicno pisemo name, jer je to ime kolone 
+     * @ORM\Column(type="integer") 
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+     * @ORM\GeneratedValue(strategy="AUTO")    
      */ 
-    private $id;
+    protected $id;
     
     /**
-     * @ORM\Column(type="string", nullable=true) // jedan isti entitet koristimo za razlicite forme (u ovom slucaju forma za registraciju i forma za kreiranje novih usera
-     */                                          // ovako dozvoljavamo da ta polja budu null, da ne moramo da ih popunimo. Potrebna su nam samo 3 polja, a imamo ih  8
+     * @ORM\Column(type="string", nullable=true)
+     */                                         
     private $ime;
 
     /**
      * @ORM\Column(type="string",nullable=true)
      */
     private $prezime;
-    
-     /**
-     * @ORM\Column(type="string", length=255, nullable=true) 
-     
-     */
-    private $username;
-         
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)    
-     */
-    private $email;
-    
-     /**
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-         
-   /**          
-     * @ORM\Column(type="string", length=64)
-     */
-    private $password;
-
-
+       
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $datum ;
     
-        
-    public function __construct()
-    {
-        $this->books = new ArrayCollection();
-    }    
-        
+               
     public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
     {        
      $fullname = $this->ime . ' ' . $this->prezime; 
@@ -74,10 +46,16 @@ class User
             
     public function __toString() 
     {
-        return $this->getFullName();
-    }
+        return $this->getFullName();        
+    } 
+    
+    public function __construct()
+    {
+        parent::__construct(); 
+        // your own logic
+    }    
+       
         
-   
     public function getId()
     {
         return $this->id;        
@@ -88,51 +66,7 @@ class User
         $this->id = $id;
         return $this;
     }
-    
-      public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function setUsername($username)
-    {
-        $this->username = $username;
-        return $this;
-    }
-    
-     public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
-    } 
-    
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
-        return $this;
-    }
-       
-     public function getPassword()
-    {
-        return $this->password;
-    }
-
-    public function setPassword($password)
-    {
-        $this->password = $password;
-        return $this;
-    }
-
+   
     public function getIme()
     {
         return $this->ime;

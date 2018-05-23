@@ -165,7 +165,8 @@ class UserController extends Controller
         
         return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
         
-    } 
+    }
+    
     /**
      * @Route("/list", name="app_user_list")
      */
