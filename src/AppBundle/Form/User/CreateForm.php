@@ -48,8 +48,7 @@ class CreateForm extends AbstractType
                     'second_options' => array('label' => 'Repeat Password'),
                  ))         
             ->add('datum', DateType::class, [
-                'label' => 'Your date of birth',
-               
+                'label' => 'Your date of birth',               
                 'years' => range(date('Y') - 48, date('Y') + 50),
                 'attr'  => [
                 'placeholder' => 'Upisi datum rodjenja',

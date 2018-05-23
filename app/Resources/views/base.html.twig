@@ -15,8 +15,8 @@
           <a class="p-2 text-dark" href="{{ path('app_book_list') }}">Books</a>
           <a class="p-2 text-dark" href="{{ path('app_publisher_list') }}">Publishers</a>       
         </nav>
-          <a class="btn btn-outline-primary" href="{{ path('app_user_create') }}">Registration</a>
-          <button type="button" class="btn btn-primary">Login</button>
+          <a class="btn btn-outline-primary" href="{{ path('fos_user_registration_register') }}">Registration</a>
+          <a class="btn btn-primary" href="{{ path('fos_user_security_login') }}">Login</a>
       </div>
       {% block body %}{% endblock %}
       {% block javascripts %}{% endblock %}
