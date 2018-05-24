@@ -225,17 +225,5 @@ class UserController extends Controller
 
       return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
 
-    }  
-    
-     private function valid_pass($password) 
-   {      
-        $r='/[0-9]/'; 
-  
-        if(preg_match_all($r,$password,$offset)<2) return FALSE;
-
-        if(strlen($password)<8) return FALSE;
-
-         return TRUE;
-    }
-    
+    }        
 }

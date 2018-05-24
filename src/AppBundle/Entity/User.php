@@ -36,8 +36,15 @@ class User extends BaseUser
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $datum ;
-    
-               
+        
+    /**
+     * @Assert\Regex(
+     *  pattern="/(?=.*[0-9]).{8,}/",
+     *  message="Password must be 8 characters long and contain at least one number"
+     * )
+     */
+    protected $plainPassword;
+                   
     public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
     {        
      $fullname = $this->ime . ' ' . $this->prezime; 
