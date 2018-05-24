@@ -33,7 +33,7 @@ class User extends BaseUser
     private $prezime;
        
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)     
      */
     private $datum ;
         

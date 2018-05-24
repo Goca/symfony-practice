@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\LessThan;
 
 
 class RegistrationForm extends AbstractType
@@ -19,6 +20,9 @@ class RegistrationForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+      $today = new \DateTime();
+      $today->modify("-18 years");
+      
         $builder                        
             ->add('username', TextType::class, [ 'label'=>'Your Username'])
             ->add('email', EmailType::class, [ 'label'=>'Your email adress'])             
@@ -31,6 +35,11 @@ class RegistrationForm extends AbstractType
                 'label' => 'Your date of birth',               
                 'years' => range(date('Y') - 48, date('Y') + 50),
                 'attr'  => [
+                ],
+                'constraints' => [
+                  new LessThan([
+                      'value' => $today
+                  ]),
                 ],
             ])
         ;

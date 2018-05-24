@@ -135,37 +135,34 @@ class UserController extends Controller
 
         if ($form->isSubmitted())
         {
-//            $formData = $form->getData();
-//            var_dump($form->get('plainPassword'));
-//            var_dump($form->get('plainPassword')->get('first_options')->getData());
-//            var_dump($formData['plainPassword']);
-//            die();
+            $formData = $form->getData();           
+            $dat =['datum'=> $formData[datum]];
             
-            $password =['pass'=> $formData['password']];
-            
-                if (!( valid_pass(password)))
-                {
-                                  
-                     return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
-
+            $bday = $dat->getDatum(); // date of birth
+            $today = new Datetime(date('m.d.y')); // mozda ('Y-m-d')
+            $diff = $today->diff($bday);
+             
+            if ($diff<18)
+                {                                                   
+                    return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
                 }                  
           
-                    if ($form->isValid())
-                    {
-                       $entityManager = $this->getDoctrine()->getManager(); 
-                         
+            else 
+                {                 
+                    $entityManager = $this->getDoctrine()->getManager();                          
                     $entityManager->persist($user);
                     $entityManager->flush();
 
                     return $this->redirect($this->generateUrl(
                            'app_user_create' ));   
-                    }
+                }
 
         }
-        
-        return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
-        
+      
+       return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+      
     }
+    
     
     /**
      * @Route("/list", name="app_user_list")
