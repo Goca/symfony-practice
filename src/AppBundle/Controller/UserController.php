@@ -36,10 +36,10 @@ class UserController extends Controller
 
             return $this->render('@App/User/edit.html.twig',
                 ['firstName' => $formData['name'], 'editForm' => $form->createView()]);
-
         }
 
         return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
+        
     }
 
 
@@ -82,6 +82,7 @@ class UserController extends Controller
         $entityManager->flush();
 
         return new Response('Saved new User with id ' . $user->getId());
+        
     }
 
 
@@ -117,7 +118,7 @@ class UserController extends Controller
         }
 
         return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
-
+        
     }
 
 
@@ -160,7 +161,7 @@ class UserController extends Controller
         }
       
        return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
-      
+       
     }
     
     
@@ -195,7 +196,7 @@ class UserController extends Controller
         $em->remove($user);
         $em->flush();
 
-        return $this->redirectToRoute('app_user_list');
+        return $this->redirectToRoute('app_user_list'); 
         
     }
     
@@ -213,10 +214,9 @@ class UserController extends Controller
       $em = $this->getDoctrine()->getManager();
       $user =  $this->getUser();                    // getUser(), f.ja koja u 'user' smesta trenutno logovanog Usera
       $form = $this->createForm(EditForm::class, $user, [                   
-            'action' => $this->generateUrl('app_user_edit')   
+            'action' => $this->generateUrl('app_user_edit')   // // public function generateUrl($route, $parameters = array())
             ]);    
-      // public function generateUrl($route, $parameters = array())     
-      
+                
       $form->handleRequest($request);
       
       if ($form->isSubmitted() && $form->isValid()) {
@@ -227,8 +227,8 @@ class UserController extends Controller
 
         return $this->redirectToRoute('app_user_list');
       }
-
+      
       return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
-
-    }        
+    } 
+    
 }
