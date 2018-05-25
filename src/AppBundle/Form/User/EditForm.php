@@ -20,7 +20,7 @@ class EditForm extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
-                'label'=> 'Ime',
+                'label'=> 'FirstName',
                 'constraints' => [
                 new NotBlank(['message' => 'Ime je obavezno']),
                 new Length(['min' => 2, 'minMessage' => 'Ime je obavezno']),
@@ -29,7 +29,7 @@ class EditForm extends AbstractType
                 'placeholder' => 'Upisi ime',],
                 ])
             ->add('lastName', TextType::class, [
-                'label'=> 'Prezime',
+                'label'=> 'LastName',
                 'constraints' => [
                 new NotBlank(['message' => 'Prezime je obavezno']),
                 new Length(['min' => 2, 'minMessage' => 'Prezime je obavezno']),
@@ -45,7 +45,7 @@ class EditForm extends AbstractType
                 'placeholder' => 'Upisi datum rodjenja',
                   ],
                  ]);
-  }
+    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
