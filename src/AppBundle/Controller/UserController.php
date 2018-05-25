@@ -4,12 +4,12 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\User;
-use AppBundle\Form\User\CreateForm;
+use AppBundle\Form\User\EditForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\Extension\Core\Type\EmailType ;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 /**
@@ -34,12 +34,12 @@ class UserController extends Controller
 
             $formData = $form->getData();
 
-            return $this->render('@App/User/create.html.twig',
-                ['firstName' => $formData['ime'], 'createForm' => $form->createView()]);
+            return $this->render('@App/User/edit.html.twig',
+                ['firstName' => $formData['name'], 'editForm' => $form->createView()]);
 
         }
 
-        return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+        return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
     }
 
 
@@ -51,8 +51,8 @@ class UserController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $user = new User();
 
-        $user->setIme('Petar');
-        $user->setPrezime('Petrovic');       
+        $user->setName('Petar');
+        $user->setLastname('Petrovic');       
         $datum = new \DateTime();
         $user->setDatum($datum);
         
@@ -71,8 +71,8 @@ class UserController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $user = new User();
 
-        $user->setIme('Ana');
-        $user->setPrezime('Anic');       
+        $user->setName('Ana');
+        $user->setLastname('Anic');       
 
         $datetime = new \DateTime();
         $newDate = $datetime->createFromFormat('d/m/Y', '01/01/2001');
@@ -105,8 +105,8 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
 
-            $user->setIme($formData['ime']);
-            $user->setPrezime($formData['prezime']);           
+            $user->setName($formData['name']);
+            $user->setLastName($formData['lastname']);           
             $user->setDatum($formData['datum']);
 
             $entityManager->persist($user);
@@ -116,7 +116,7 @@ class UserController extends Controller
 
         }
 
-        return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+        return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
 
     }
 
@@ -144,7 +144,7 @@ class UserController extends Controller
              
             if ($diff<18)
                 {                                                   
-                    return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+                    return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
                 }                  
           
             else 
@@ -159,7 +159,7 @@ class UserController extends Controller
 
         }
       
-       return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+       return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
       
     }
     
@@ -175,52 +175,60 @@ class UserController extends Controller
         $users = $repository->findAll();
 
         return $this->render('@App/User/list.html.twig', ['users' => $users]);
+        
     }
     
 
     /**
-     * @Route("/delete-user/{id}", name="app_user_delete")
+     * @Route("/delete-user", name="app_user_delete")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('AppBundle:User')->find($id);
-
-        if (!$user) { // ne postoji user
-            throw $this->createNotFoundException('No User found for id ' . $id);
-        } else {
-            $em->remove($user);
-            $em->flush();
-
-            return $this->redirectToRoute('app_user_list');
+            
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
         }
+        
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirectToRoute('app_user_list');
+        
     }
     
     
     /**
-     * @Route("/edit-user/{id}", name="app_user_edit")
+     * @Route("/edit-user", name="app_user_edit")
      */
-    public function editAction(Request $request, $id)           // akcija kojom cemo editovati Usera iz baze
+    public function editAction(Request $request)           // akcija kojom cemo editovati Usera iz baze
     {
       
-      $em = $this->getDoctrine()->getManager();
-      $user = $em->getRepository('AppBundle:User')->find($id);
-        
-      $form = $this->createForm(CreateForm::class, $user, [                                 // trebalo bi napraviti novu formu 
-            'action' => $this->generateUrl('app_user_edit', array('id'=> $user->getId()))   //forma za edit i forma za upis novog usera moze se razlikovati
-        ]);                                                                                 // public function generateUrl($route, $parameters = array())     
-      $form->handleRequest($request);
-
-      if ($form->isSubmitted() && $form->isValid()) {
-      $entityManager = $this->getDoctrine()->getManager();
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) { // proveramo da li je User logovan
+            throw $this->createAccessDeniedException();
+        }      
             
-      $entityManager->persist($user);
-      $entityManager->flush();
+      $em = $this->getDoctrine()->getManager();
+      $user =  $this->getUser();                    // getUser(), f.ja koja u 'user' smesta trenutno logovanog Usera
+      $form = $this->createForm(EditForm::class, $user, [                   
+            'action' => $this->generateUrl('app_user_edit')   
+            ]);    
+      // public function generateUrl($route, $parameters = array())     
+      
+      $form->handleRequest($request);
+      
+      if ($form->isSubmitted() && $form->isValid()) {
+          $entityManager = $this->getDoctrine()->getManager();
+            
+          $entityManager->persist($user);
+          $entityManager->flush();
 
         return $this->redirectToRoute('app_user_list');
       }
 
-      return $this->render('@App/User/create.html.twig', ['createForm' => $form->createView()]);
+      return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
 
     }        
 }

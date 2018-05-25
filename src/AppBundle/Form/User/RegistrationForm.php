@@ -17,13 +17,15 @@ use Symfony\Component\Validator\Constraints\LessThan;
 
 class RegistrationForm extends AbstractType
 {
-
+  
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-      $today = new \DateTime();
-      $today->modify("-18 years");
+        $today = new \DateTime();
+        $today->modify("-18 years");
       
-        $builder                        
+        $builder
+            ->add('firstName', TextType::class, [ 'label'=>'Your Name'])
+            ->add('lastName', TextType::class, [ 'label'=>'Your Last Name'])                   
             ->add('username', TextType::class, [ 'label'=>'Your Username'])
             ->add('email', EmailType::class, [ 'label'=>'Your email adress'])             
             ->add('plainPassword', RepeatedType::class, 
@@ -31,19 +33,19 @@ class RegistrationForm extends AbstractType
                     'first_options'  => array ('label' => 'Password'),
                     'second_options' => array('label' => 'Repeat Password'),
                  ))         
-            ->add('datum', DateType::class, [
+            ->add('birthday', DateType::class, [
                 'label' => 'Your date of birth',               
-                'years' => range(date('Y') - 48, date('Y') + 50),
+                'years' => range(date('Y') - 48, date('Y')),
                 'attr'  => [
                 ],
                 'constraints' => [
-                  new LessThan([
-                      'value' => $today
-                  ]),
+                new LessThan([
+                    'value' => $today,
+                    'message' => 'You must be 18 or older to register'])                  
                 ],
             ])
         ;
-  }
+    }
  
     public function configureOptions(OptionsResolver $resolver)
     {

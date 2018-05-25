@@ -17,7 +17,7 @@
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr>    
-          <th>First name</th>
+          <th>Name</th>
           <th>Last name</th>
           <th>Username</th>
           <th>Email</th>               
@@ -27,13 +27,17 @@
       </thead>
       {% for user in users %}
       <tr>    
-        <td>{{ user.ime }}</td>
-        <td>{{ user.prezime }}</td> 
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td> 
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>        
-        <td>{{ user.datum |date('d.m.Y.')}}</td>        
-        <td><center><a href="{{ path('app_user_delete', { 'id': user.id }) }}" style="text-align:center">Delete</a><br/>
-          <a href="{{ path('app_user_edit', { 'id': user.id }) }}" style="text-align:center">Edit</a></center></td>       
+        <td>{{ user.birthday|date('d.m.Y.')}}</td>        
+        <td>
+          {% if app.user and app.user.id == user.id %}            
+            <center><a href="{{ path('app_user_delete') }}" style="text-align:center">Delete</a><br/>
+            <a href="{{ path('app_user_edit') }}" style="text-align:center">Edit</a></center>        
+          {% endif %}
+        </td>       
       </tr>
       {% endfor %}
     </table>

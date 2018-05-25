@@ -25,17 +25,17 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", nullable=true)
      */                                         
-    private $ime;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string",nullable=true)
      */
-    private $prezime;
+    private $lastName;
        
     /**
      * @ORM\Column(type="datetime", nullable=true)     
      */
-    private $datum ;
+    private $birthday;
         
     /**
      * @Assert\Regex(
@@ -47,7 +47,7 @@ class User extends BaseUser
                    
     public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
     {        
-     $fullname = $this->ime . ' ' . $this->prezime; 
+     $fullname = $this->name . ' ' . $this->lastname; 
      return $fullname;
     }
             
@@ -74,36 +74,36 @@ class User extends BaseUser
         return $this;
     }
    
-    public function getIme()
+    public function getFirstName()
     {
-        return $this->ime;
+        return $this->firstName;
     }
 
-    public function setIme($ime)
+    public function setFirstName($firstName)
     {
-        $this->ime = $ime;
+        $this->firstName = $firstName;
         return $this;
     }
 
-    public function getPrezime()
+    public function getLastName()
     {
-        return $this->prezime;
+        return $this->lastName;
     }
 
-    public function setPrezime($prezime)
+    public function setLastName($lastName)
     {
-        $this->prezime = $prezime;
+        $this->lastName = $lastName;
         return $this;
     }
 
-    public function getDatum()
+    public function getBirthday()
     {
-        return $this->datum;
+        return $this->birthday;
     }
 
-    public function setDatum($datum)
+    public function setBirthday($birthday)
     {
-        $this->datum = $datum;
+        $this->birthday = $birthday;
         return $this;
     }       
 }
