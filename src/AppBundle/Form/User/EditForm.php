@@ -26,8 +26,8 @@ class EditForm extends AbstractType
                 new Length(['min' => 2, 'minMessage' => 'Ime je obavezno']),
                 ],
                 'attr' => [
-                'placeholder' => 'Upisi ime',],
-                ])
+                    'placeholder' => 'Upisi ime'],
+            ])
             ->add('lastName', TextType::class, [
                 'label'=> 'LastName',
                 'constraints' => [
@@ -35,16 +35,16 @@ class EditForm extends AbstractType
                 new Length(['min' => 2, 'minMessage' => 'Prezime je obavezno']),
                 ],
                 'attr'=> [
-                'placeholder' => 'Upisi prezime'],
-                ])
+                    'placeholder' => 'Upisi prezime'],
+            ])
             
             ->add('birthday', DateType::class, [
                 'label' => 'Your date of birth',               
                 'years' => range(date('Y') - 48, date('Y')),
                 'attr'  => [
-                'placeholder' => 'Upisi datum rodjenja',
-                  ],
-                 ]);
+                    'placeholder' => 'Upisi datum rodjenja',
+                 ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

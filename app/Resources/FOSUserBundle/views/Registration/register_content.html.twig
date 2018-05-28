@@ -1,8 +1,102 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
+{% block stylesheets %}
+  <style>
+    body {
+      background-color: #cccccc;
+    }
+    
+     input {
+      width: 100%;
+    }
+
+    input[type=submit] {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 10px 5px;;
+      cursor: pointer; 
+    }  
+    
+    input.beige {
+      background-color: beige;
+    }
+
+    input.orange {
+      background-color:  #ffdd99;
+    }
+    
+     li {
+      color:#6f2020;
+      font-size: 13px; 
+      list-style: none;
+      text-align: left;
+    }
+    
+    ul {
+      padding: 0;
+      margin:0
+    }
+    
+    .input-holder {
+      margin-bottom:20px;
+      text-align: left;   
+    }  
+  </style>
+  {% endblock %} 
+  
+{% block body %}
+  <center>  
+    <div style='padding: 50px;background-color: lightblue;'>
+      <h1 style='font-size: 30px;text-align: center;'>
+        {% if firstName is defined %}{{ firstName }} {% else%} Registration {% endif %}        
+      </h1>
+    </div>    
+    <div style='width: 400px; padding: 75px;background-color: gray;'>
+      {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}      
+      {{ form_errors(form) }}      
+      
+      <div class="input-holder">
+        {{ form_label(form.firstName)}}
+        {{ form_widget(form.firstName, {'attr': {'class': 'orange'}})}}
+        {{ form_errors(form.firstName)}}
+      </div>    
+
+      <div class="input-holder">
+        {{ form_label(form.lastName)}}                               
+        {{ form_widget(form.lastName, {'attr': {'class': 'beige'}})}}
+        {{ form_errors(form.lastName) }}
+      </div>  
+        
+      <div class="input-holder">
+        {{ form_label(form.username)}}
+        {{ form_widget(form.username, {'attr': {'class': 'orange'}})}}
+        {{ form_errors(form.username)}}
+      </div>
+
+      <div class="input-holder">
+        {{ form_label(form.email)}}                               
+        {{ form_widget(form.email, {'attr': {'class': 'beige'}})}}
+        {{ form_errors(form.email) }}
+      </div>                      
+      
+      <div class="input-holder">
+        {{ form_label(form.plainPassword.first)}}
+        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'orange'}})}}
+        {{ form_errors(form.plainPassword.first)}}
+      </div>
+
+      <div class="input-holder">
+        {{ form_label(form.plainPassword.second)}}                               
+        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'beige'}})}}
+        {{ form_errors(form.plainPassword.second) }}
+      </div>                        
+      <div>
         <input type="submit" value="{{ 'registration.submit'|trans }}" />
+      </div>
+      {{ form_end(form) }}
     </div>
-{{ form_end(form) }}
+  </center>  
+{% endblock %}

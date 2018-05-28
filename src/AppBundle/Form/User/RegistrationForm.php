@@ -32,6 +32,7 @@ class RegistrationForm extends AbstractType
                 array('type' => PasswordType::class, 
                     'first_options'  => array ('label' => 'Password'),
                     'second_options' => array('label' => 'Repeat Password'),
+                    'invalid_message' => "Passwords don't matches.",
                  ))         
             ->add('birthday', DateType::class, [
                 'label' => 'Your date of birth',               
