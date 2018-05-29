@@ -34,8 +34,10 @@
         <td>{{ user.birthday|date('d.m.Y.')}}</td>        
         <td>
           {% if app.user and app.user.id == user.id %}            
-            <center><a href="{{ path('app_user_delete') }}" style="text-align:center">Delete</a><br/>
-            <a href="{{ path('app_user_edit') }}" style="text-align:center">Edit</a></center>        
+            <center>                                        
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">Delete</button>                                                            
+              <a href="{{ path('app_user_edit')}}" style="text-align:center">Edit</a>
+            </center>        
           {% endif %}
         </td>       
       </tr>
@@ -44,4 +46,8 @@
   </div>
 {% endblock %}
 
+{% block modals %} 
+  {{ include('@App/Modals/modal_confirmation.html.twig') }}
+{% endblock %}
+      
 
