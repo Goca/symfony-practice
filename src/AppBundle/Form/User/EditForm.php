@@ -18,6 +18,10 @@ class EditForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
+        $today = new \DateTime();
+        $today->modify("-18 years");
+        
         $builder
             ->add('firstName', TextType::class, [
                 'label'=> 'FirstName',
@@ -41,9 +45,10 @@ class EditForm extends AbstractType
             ->add('birthday', DateType::class, [
                 'label' => 'Your date of birth',               
                 'years' => range(date('Y') - 48, date('Y')),
+                 new LessThan([
+                    'value' => $today ]),
                 'attr'  => [
-                    'placeholder' => 'Upisi datum rodjenja',
-                 ],
+                    'placeholder' => 'Upisi datum rodjenja'],
             ]);
     }
 
