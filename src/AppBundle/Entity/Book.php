@@ -24,12 +24,13 @@ class Book
     private $id;
     
     /**
-     * @ORM\Column(type="string", length=255, unique=true) 
+     * @ORM\Column(type="string", length=255) 
      * @Assert\NotBlank()
      */
     private $title;
     
     /**
+     * @ORM\Column(type="string", length=20) 
     * @Assert\Isbn(
     *     type = "isbn10",
     *     message = "This value is not valid."

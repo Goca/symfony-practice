@@ -28,7 +28,7 @@
       <tr>    
         <td>{{ book.title }}</td>
         <td>{{ book.isbn }}</td>
-        <td>{{ book.yearOfPublishing}}</td>        
+        <td>{{ book.yearOfPublishing|date('Y')}}</td>        
         <td>{{ book.category}}</td> 
         <td>{{ book.author}}</td>         
         <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>

@@ -16,6 +16,7 @@ use Symfony\Component\Intl\DateFormatter\DateFormat\YearTransformer;
 
 class BookForm extends AbstractType   
 {  
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -23,7 +24,7 @@ class BookForm extends AbstractType
             'label'=> 'Title'])
             ->add('isbn', TextType::class, [
                 'label'=> 'ISBN',
-               'attr'  => [
+                'attr'  => [
                     'placeholder' => 'example: 99921-58-10-7'],
             ])
             ->add('yearOfPublishing', DateType::class, array(
