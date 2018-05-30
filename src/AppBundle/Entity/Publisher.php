@@ -48,64 +48,64 @@ class Publisher
       
     
     /**
-     * @ORM\OneToMany(targetEntity="Book", mappedBy="publisher") // mappedBy="publisher" pokazuje prekokog polja se ostvaruje relacija sa entitetom BooK )
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="publisher") // mappedBy="publisher" pokazuje preko kog polja se ostvaruje relacija sa entitetom BooK )
      */
-    private $books; // kako ce nam se zvati polje u ovom entitetu ( polje koje dobijamo iz relacije prema entitetu Book (targetEntity="Book"), 
+    private $books; //polje u ovom entitetu ( polje koje dobijamo iz relacije prema entitetu Book (targetEntity="Book"), 
     
     public function __construct()
-        {
-            $this->books = new ArrayCollection();
-        }    
+    {
+        $this->books = new ArrayCollection();
+    }    
         
     public function __toString() 
-        {
-            return $this->title;
-        }
+    {
+        return $this->title;
+    }
          
     public function getId()
-        {
-            return $this->id;
-        }
+    {
+        return $this->id;
+    }
       
     public function getTitle()
-        {
-            return $this->title;
-        }
+    {
+        return $this->title;
+    }
    
     public function setTitle($title)
-        {        
-            return$this->title = $title;
-        }     
+    {        
+        return$this->title = $title;
+    }     
     
     public function getCity()
-        {
-            return $this->city;
-        }
+    {
+        return $this->city;
+    }
     
     public function setCity($city)
-        {
-            $this->city = $city;
-        }
+    {
+        $this->city = $city;
+    }
     
-   public function getCreatedAt()
-        {
-            return $this->createdAt;
-        }
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
 
     public function setCreatedAt($createdAt)
-        {
-            return $this->createdAt = $createdAt;         
-        }   
+    {
+        return $this->createdAt = $createdAt;         
+    }   
         
     public function getUpdatedAt()
-        {
-            return $this->updatedAt;
-        }
+    {
+        return $this->updatedAt;
+    }
 
     public function setUpdatedAt($updatedAt)
-        {
-            return $this->updatedAt = $updatedAt;      
-        } 
+    {
+        return $this->updatedAt = $updatedAt;      
+    } 
             
     /**
      * @ORM\PrePersist

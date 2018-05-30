@@ -49,7 +49,7 @@ class User extends BaseUser
     /**
     * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
     */
-    private $books;  // kako ce nam se zvati polje u ovom entitetu ( polje koje dobijamo iz relacije prema entitetu Book, (targetEntity="Book"))
+    private $books;  //  polje u ovom entitetu ( polje koje dobijamo iz relacije prema entitetu Book, (targetEntity="Book"))
                    
     public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
     {        
