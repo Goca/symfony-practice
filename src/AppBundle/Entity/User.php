@@ -6,6 +6,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -44,10 +45,15 @@ class User extends BaseUser
      * )
      */
     protected $plainPassword;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+    */
+    private $books;
                    
     public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
     {        
-     $fullname = $this->name . ' ' . $this->lastname; 
+     $fullname = $this->firstName . ' ' . $this->lastName; 
      return $fullname;
     }
             
@@ -59,10 +65,10 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct(); 
-        // your own logic
+        $this->books = new ArrayCollection();
     }    
-       
-        
+         
+    
     public function getId()
     {
         return $this->id;        
@@ -105,7 +111,24 @@ class User extends BaseUser
     {
         $this->birthday = $birthday;
         return $this;
-    }       
+    } 
+    
+    public function addBook(Book $book)
+    {
+        $this->books[] = $book;
+
+        return $this;
+    }
+
+    public function removeBook(Book $book)
+    {
+        $this->books->removeElement($book);
+    }
+
+    public function getBooks()
+    {
+        return $this->books;
+    }
 }
 
 

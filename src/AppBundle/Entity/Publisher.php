@@ -19,8 +19,7 @@ class Publisher
     /**
      * @ORM\Column(type="integer") 
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")     
-     * @ORM\OneToMany(targetEntity="Book", mappedBy="publisher")
+     * @ORM\GeneratedValue(strategy="AUTO")          
      */
      
     private $id;
@@ -38,7 +37,7 @@ class Publisher
     private $city;
       
     /**
-     * @ORM\Column(type="datetime", nullable=true) 
+     * @ORM\Column(type="datetime") 
      */                     
     private $createdAt ;    
           
@@ -48,81 +47,97 @@ class Publisher
     private $updatedAt ;
       
     
+    /**
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="publisher")
+     */
+    private $books;
+    
     public function __construct()
-    {
-        $this->books = new ArrayCollection();
-    }    
+        {
+            $this->books = new ArrayCollection();
+        }    
         
     public function __toString() 
-    {
-        return $this->title;
-    }
+        {
+            return $this->title;
+        }
          
     public function getId()
-    {
-        return $this->id;
-    }
-    
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
+        {
+            return $this->id;
+        }
+      
     public function getTitle()
-    {
-        return $this->title;
-    }
+        {
+            return $this->title;
+        }
    
     public function setTitle($title)
-    {        
-        return$this->title = $title;
-    }     
+        {        
+            return$this->title = $title;
+        }     
     
     public function getCity()
-    {
-        return $this->city;
-    }
+        {
+            return $this->city;
+        }
     
     public function setCity($city)
-    {
-        $this->city = $city;
-    }
+        {
+            $this->city = $city;
+        }
     
    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
+        {
+            return $this->createdAt;
+        }
 
     public function setCreatedAt($createdAt)
-    {
-       return $this->createdAt = $createdAt;         
-    }
-   
+        {
+            return $this->createdAt = $createdAt;         
+        }   
+        
+    public function getUpdatedAt()
+        {
+            return $this->updatedAt;
+        }
+
+    public function setUpdatedAt($updatedAt)
+        {
+            return $this->updatedAt = $updatedAt;      
+        } 
+            
     /**
-    * @ORM\PrePersist
-    */
+     * @ORM\PrePersist
+     */        
     public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
     }
-    
-    
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt($updatedAt)
-    {
-        return $this->updatedAt = $updatedAt;      
-    } 
-    
+        
     /**
-    * @ORM\PreUpdate
-    */
+     * @ORM\PreUpdate
+     */
     public function setUpdatedAtValue()
     {
         $this->updatedAt = new \DateTime();
+    }
+        
+    public function addBook(Book $book)
+    {
+        $this->books[] = $book;
+
+        return $this;
+    }
+
+    public function removeBook(Book $book)
+    {
+        $this->books->removeElement($book);
+    }
+
+    public function getBooks()
+    {
+        return $this->books;
     }
            
 }
