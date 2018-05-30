@@ -214,7 +214,7 @@ class UserController extends Controller
       $em = $this->getDoctrine()->getManager();
       $user =  $this->getUser();                    // getUser(), f.ja koja u 'user' smesta trenutno logovanog Usera
       $form = $this->createForm(EditForm::class, $user, [                   
-            'action' => $this->generateUrl('app_user_edit')   // // public function generateUrl($route, $parameters = array())
+            'action'=> $this->generateUrl('app_user_edit')   // // public function generateUrl($route, $parameters = array())
             ]);    
                 
       $form->handleRequest($request);

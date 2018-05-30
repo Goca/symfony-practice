@@ -11,6 +11,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\LessThan;
+
 
 
 class EditForm extends AbstractType
@@ -18,9 +20,9 @@ class EditForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        
-        $today = new \DateTime();
-        $today->modify("-18 years");
+//        
+//        $today = new \DateTime();
+//        $today->modify("-18 years");
         
         $builder
             ->add('firstName', TextType::class, [
@@ -45,8 +47,8 @@ class EditForm extends AbstractType
             ->add('birthday', DateType::class, [
                 'label' => 'Your date of birth',               
                 'years' => range(date('Y') - 48, date('Y')),
-                 new LessThan([
-                    'value' => $today ]),
+//                 new LessThan([
+//                    'value' => $today ]),
                 'attr'  => [
                     'placeholder' => 'Upisi datum rodjenja'],
             ]);

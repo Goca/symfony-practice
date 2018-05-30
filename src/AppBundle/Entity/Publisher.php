@@ -48,9 +48,9 @@ class Publisher
       
     
     /**
-     * @ORM\OneToMany(targetEntity="Book", mappedBy="publisher")
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="publisher") // mappedBy="publisher" pokazuje prekokog polja se ostvaruje relacija sa entitetom BooK )
      */
-    private $books;
+    private $books; // kako ce nam se zvati polje u ovom entitetu ( polje koje dobijamo iz relacije prema entitetu Book (targetEntity="Book"), 
     
     public function __construct()
         {

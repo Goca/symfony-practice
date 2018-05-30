@@ -11,12 +11,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
-
+use Symfony\Component\Intl\DateFormatter\DateFormat\YearTransformer;
 
 
 class BookForm extends AbstractType   
-{
+{  
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -26,7 +25,7 @@ class BookForm extends AbstractType
             'label'=> 'ISBN'])
             ->add('yearOfPublishing', DateType::class, [
                 'label'=> 'YearOfPublishing',
-                'years' => range(date('Y') - 48, date('Y') + 50)])
+                'years' => range(date('Y') - 48, date('Y'))])
             ->add('publisher', EntityType::class, [
                 'class' => 'AppBundle:Publisher',
                 'label'=> 'Publisher'])
@@ -38,7 +37,10 @@ class BookForm extends AbstractType
                 'class'=> 'AppBundle:User',
                 'label'=> 'Author'])              
             ->add('featured', CheckboxType::class, [
-            'label'=> 'Featured']) ;                                    
+            'label'=> 'Featured']) ;   
+        
+         $builder->get('yearOfPublishing')
+            ->addModelTransformer(new YearTransformer());
     }
     
     public function configureOptions(OptionsResolver $resolver)

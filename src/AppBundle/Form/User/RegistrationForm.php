@@ -44,8 +44,7 @@ class RegistrationForm extends AbstractType
                     'value' => $today,
                     'message' => 'You must be 18 or older to register'])                  
                 ],
-            ])
-        ;
+            ]);
     }
  
     public function configureOptions(OptionsResolver $resolver)
