@@ -35,7 +35,7 @@ class BookController extends Controller
             $entityManager->flush();
 
             return $this->redirect($this->generateUrl(
-                'app_book_add'
+                'app_book_edit', ['id' => $book->getId()]
             ));
         }
 
@@ -53,7 +53,7 @@ class BookController extends Controller
         $em = $this->getDoctrine()->getManager();
         $book = $em->getRepository('AppBundle:Book')->find($id);
         
-        $form = $this->createForm(CategoryForm::class, $book, [                                
+        $form = $this->createForm(Book::class, $book, [                                
             'action' => $this->generateUrl('app_book_edit', array('id'=> $book->getId()))   
         ]);                                                                                 
         $form->handleRequest($request);

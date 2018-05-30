@@ -3,19 +3,27 @@
 {% block body %} 
   <div style='padding: 50px'>
     <center>
-      {{ form_start(addForm)}}      
+      {{ form_start(addForm)}} 
+      
+      {{ form_errors(addForm)}} 
+      
       {{ form_label(addForm.title)}}
       {{ form_widget(addForm.title)}}
       {{ form_errors(addForm.title)}}</br>
       {{ form_label(addForm.isbn)}}
-      {{ form_widget(addForm.isbn)}}</br>
+      {{ form_widget(addForm.isbn)}}
+      {{ form_errors(addForm.isbn)}}</br>
    
-      {{ form_label(addForm.yearOfPublishing.year)}}
+{#      {{ form_label(addForm.yearOfPublishing.year)}}
       {{ form_widget(addForm.yearOfPublishing.year)}}    
       {{ form_widget(addForm.yearOfPublishing.month, {'attr': { 'style': 'display:none' }} ) }}
       {{ form_widget(addForm.yearOfPublishing.day, {'attr': { 'style': 'display:none' }} ) }}            
-      {{ form_errors(addForm.yearOfPublishing)}}</br> 
+      {{ form_errors(addForm.yearOfPublishing)}}</br> #}
     
+      {{ form_label(addForm.yearOfPublishing)}}    
+      {{ form_widget(addForm.yearOfPublishing)}}    
+      {{ form_errors(addForm.yearOfPublishing)}}</br>     
+
       {{ form_label(addForm.publisher)}}
       {{ form_widget(addForm.publisher)}}</br> 
       {{ form_label(addForm.category)}}
@@ -24,7 +32,13 @@
       {{ form_widget(addForm.author)}}</br> 
       {{ form_label(addForm.featured)}}
       {{ form_widget(addForm.featured)}}</br>    
-      <input type="submit" value="Zapamti">          
+      <input type="submit" value="Zapamti">
+      
+      
+      <div class="hide">
+        {{ form_rest(addForm) }}
+      </div>
+      
     </center>
   </div>
 {% endblock %}

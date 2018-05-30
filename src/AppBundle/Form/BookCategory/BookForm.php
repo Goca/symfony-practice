@@ -22,10 +22,16 @@ class BookForm extends AbstractType
             ->add('title', TextType::class, [
             'label'=> 'Title'])
             ->add('isbn', TextType::class, [
-            'label'=> 'ISBN'])
-            ->add('yearOfPublishing', DateType::class, [
+                'label'=> 'ISBN',
+               'attr'  => [
+                    'placeholder' => 'example: 99921-58-10-7'],
+            ])
+            ->add('yearOfPublishing', DateType::class, array(
                 'label'=> 'YearOfPublishing',
-                'years' => range(date('Y') - 48, date('Y'))])
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy',
+            ))                
             ->add('publisher', EntityType::class, [
                 'class' => 'AppBundle:Publisher',
                 'label'=> 'Publisher'])
@@ -37,10 +43,7 @@ class BookForm extends AbstractType
                 'class'=> 'AppBundle:User',
                 'label'=> 'Author'])              
             ->add('featured', CheckboxType::class, [
-            'label'=> 'Featured']) ;   
-        
-         $builder->get('yearOfPublishing')
-            ->addModelTransformer(new YearTransformer());
+            'label'=> 'Featured']) ;
     }
     
     public function configureOptions(OptionsResolver $resolver)

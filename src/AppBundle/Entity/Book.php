@@ -32,7 +32,7 @@ class Book
     /**
     * @Assert\Isbn(
     *     type = "isbn10",
-    *     message = "This value is not  valid."
+    *     message = "This value is not valid."
     * )
     */
     
@@ -121,7 +121,8 @@ class Book
     
     public function setYearOfPublishing($yearOfPublishing)
         {
-            $this->$yearOfPublishing = $yearOfPublishing;
+      
+            $this->yearOfPublishing = $yearOfPublishing;
         }
             
     public function getPublisher()
