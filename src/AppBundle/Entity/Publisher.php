@@ -74,7 +74,8 @@ class Publisher
    
     public function setTitle($title)
     {        
-        return$this->title = $title;
+        $this->title = $title;
+        return $this;
     }     
     
     public function getCity()
@@ -85,6 +86,7 @@ class Publisher
     public function setCity($city)
     {
         $this->city = $city;
+        return $this;
     }
     
     public function getCreatedAt()
@@ -94,7 +96,8 @@ class Publisher
 
     public function setCreatedAt($createdAt)
     {
-        return $this->createdAt = $createdAt;         
+        $this->createdAt = $createdAt; 
+        return $this;
     }   
         
     public function getUpdatedAt()
@@ -104,7 +107,8 @@ class Publisher
 
     public function setUpdatedAt($updatedAt)
     {
-        return $this->updatedAt = $updatedAt;      
+        $this->updatedAt = $updatedAt; 
+        return $this;
     } 
             
     /**
@@ -113,6 +117,7 @@ class Publisher
     public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
+        return $this;
     }
         
     /**
@@ -121,6 +126,7 @@ class Publisher
     public function setUpdatedAtValue()
     {
         $this->updatedAt = new \DateTime();
+        return $this;
     }
     
     public function addBook(Book $book)

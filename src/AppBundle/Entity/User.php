@@ -90,7 +90,7 @@ class User extends BaseUser
         $this->firstName = $firstName;
         return $this;
     }
-
+        
     public function getLastName()
     {
         return $this->lastName;
@@ -115,8 +115,7 @@ class User extends BaseUser
     
     public function addBook(Book $book)
     {
-        $this->books[] = $book;
-
+        $this->books[] = $book;        
         return $this;
     }
 

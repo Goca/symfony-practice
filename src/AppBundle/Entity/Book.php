@@ -96,6 +96,7 @@ class Book
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
     
     public function getIsbn()
@@ -105,7 +106,8 @@ class Book
 
     public function setIsbn($isbn)
     {
-            $this->isbn = $isbn;
+        $this->isbn = $isbn;
+        return $this;            
     }
     
     public function getYearOfPublishing()
@@ -116,6 +118,7 @@ class Book
     public function setYearOfPublishing($yearOfPublishing)
     {      
         $this->yearOfPublishing = $yearOfPublishing;
+        return $this;
     }
             
     public function getPublisher()
@@ -126,6 +129,7 @@ class Book
     public function setPublisher($publisher)
     {
         $this->publisher = $publisher;
+        return $this;
     }
     
     public function getCategory()
@@ -136,6 +140,7 @@ class Book
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
     
     public function Author()
@@ -146,6 +151,7 @@ class Book
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;       
     }
     
     public function getFeatured()
@@ -156,6 +162,7 @@ class Book
     public function setFeatured($featured)
     {
         $this->featured =$featured;
+        return $this;
     }
     
     public function getCreatedAt()
@@ -175,7 +182,7 @@ class Book
 
     public function setUpdatedAt($updatedAt)
     {
-        return $this->updatedAt = $updatedAt;      
+        return $this->updatedAt = $updatedAt;        
     }     
     
     /**
@@ -184,6 +191,7 @@ class Book
     public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
+        return $this;
     }
     
     /**
@@ -192,6 +200,7 @@ class Book
     public function setUpdatedAtValue()
     {
         $this->updatedAt = new \DateTime();
+        return $this;
     } 
         
 }
