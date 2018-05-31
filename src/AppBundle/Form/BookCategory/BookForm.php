@@ -44,7 +44,8 @@ class BookForm extends AbstractType
                 'class'=> 'AppBundle:User',
                 'label'=> 'Author'])              
             ->add('featured', CheckboxType::class, [
-            'label'=> 'Featured']) ;
+                'label'=> 'Featured',
+                'required' => false]);
     }
     
     public function configureOptions(OptionsResolver $resolver)

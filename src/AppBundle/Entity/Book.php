@@ -63,7 +63,7 @@ class Book
     
     /**
      * @ORM\Column(type="boolean")   // the book marked as featured and that book will appears in special sections (flegovi)
-     * @Assert\NotBlank()            // u formi ne kao boolean type nego kao checkbox type
+                                      // u formi ne kao boolean type nego kao checkbox type
      */
     private $featured;       
     
