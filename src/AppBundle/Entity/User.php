@@ -42,13 +42,13 @@ class User extends BaseUser
      * @Assert\Regex(
      *  pattern="/(?=.*[0-9]).{8,}/",
      *  message="Password must be 8 characters long and contain at least one number"
-     * )
+     *  )
      */
     protected $plainPassword;
     
     /**
-    * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
-    */
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+     */
     private $books;  //  polje u ovom entitetu ( polje koje dobijamo iz relacije prema entitetu Book, (targetEntity="Book"))
                    
     public function getFullName()  // f.ja koja ce nam vratiti ime i prezime
@@ -129,6 +129,7 @@ class User extends BaseUser
     {
         return $this->books;
     }
+    
 }
 
 

@@ -122,11 +122,10 @@ class Publisher
     {
         $this->updatedAt = new \DateTime();
     }
-        
+    
     public function addBook(Book $book)
     {
         $this->books[] = $book;
-
         return $this;
     }
 
@@ -139,5 +138,5 @@ class Publisher
     {
         return $this->books;
     }
-           
+             
 }

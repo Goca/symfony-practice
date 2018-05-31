@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Book
 {
   
-     /**
+    /**
      * @ORM\Column(type="integer") 
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -31,36 +31,34 @@ class Book
     
     /**
      * @ORM\Column(type="string", length=20) 
-    * @Assert\Isbn(
-    *     type = "isbn10",
-    *     message = "This value is not valid."
-    * )
-    */
-    
+     * @Assert\Isbn(
+     *     type = "isbn10",
+     *     message = "This value is not valid."
+     * )    
+     */   
     private $isbn;
     
     /**
-    * @ORM\Column(type="datetime", nullable=true)
-    */
-    
+     * @ORM\Column(type="datetime", nullable=true)
+     */    
     private $yearOfPublishing;
           
     /**    
-    * @ORM\ManyToOne(targetEntity="Publisher", inversedBy="books")
-    * @ORM\JoinColumn(name="publisher_id", referencedColumnName="id") // name="publisher_id", odnosi se na entitet u kom se nalazimo, referencedColumnName="id" se odnosi na Publisher-a, target entitet
-    */
+     * @ORM\ManyToOne(targetEntity="Publisher", inversedBy="books")
+     * @ORM\JoinColumn(name="publisher_id", referencedColumnName="id") // name="publisher_id", odnosi se na entitet u kom se nalazimo, referencedColumnName="id" se odnosi na Publisher-a, target entitet
+     */
     private $publisher;
         
     /**
-    * @ORM\ManyToOne(targetEntity="BookCategory", inversedBy="books")
-    * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-    */
+     * @ORM\ManyToOne(targetEntity="BookCategory", inversedBy="books")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
     private $category;
         
     /**
-    * @ORM\ManyToOne(targetEntity="User", inversedBy="books")
-    * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
-    */
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="books")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     */
     private $author;     
     
     /**
@@ -89,12 +87,7 @@ class Book
     {
         return $this->id;
     }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-        
+          
     public function getTitle()
     {
         return $this->title;

@@ -15,63 +15,63 @@ use Doctrine\Common\Collections\ArrayCollection;
 class BookCategory 
 {
 
-  /**
-   * @ORM\Column(type="integer") 
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="AUTO")   
-   */
-  private $id;
+    /**
+     * @ORM\Column(type="integer") 
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")   
+     */
+    private $id;
 
-  /**
-   * @ORM\Column(type="string", length=80)
-   */
-  private $title;
+    /**
+     * @ORM\Column(type="string", length=80)
+     */
+    private $title;
   
-  /**
-   * @ORM\OneToMany(targetEntity="Book", mappedBy="category")
-   */
-  private $books;
+    /**
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="category")
+     */
+    private $books;
 
-  public function __construct()
-  {
-      $this->books = new ArrayCollection();
-  }
+    public function __construct()
+    {
+        $this->books = new ArrayCollection();
+    }
 
-  public function __toString() 
-  {
-      return $this->title;
-  }
+    public function __toString() 
+    {
+        return $this->title;
+    }
  
- public function getId() 
-  {
-      return $this->id;
-  }  
+    public function getId() 
+    {
+        return $this->id;
+    }  
 
-  public function getTitle() 
-  {
-      return $this->title;
-  }
+    public function getTitle() 
+    {
+        return $this->title;
+    }
 
-  public function setTitle($title)
-  {
-      $this->title = $title;
-  }
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
-  public function addBook(Book $book)
-  {
-    $this->books[] = $book;
+    public function addBook(Book $book)
+    {
+        $this->books[] = $book;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  public function removeBook(Book $book)
-  {
-    $this->books->removeElement($book);
-  }
+    public function removeBook(Book $book)
+    {
+        $this->books->removeElement($book);
+    }
 
-  public function getBooks()
-  {
-    return $this->books;
-  }
+    public function getBooks()
+    {
+        return $this->books;
+    }
       
 }
