@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BookRepository") // repository Book entiteta
  * @ORM\HasLifecycleCallbacks() 
  * @ORM\Table(name="book")
  */
