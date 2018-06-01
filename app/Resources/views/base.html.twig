@@ -14,31 +14,26 @@
           
             <nav class="my-2 my-md-0 mr-md-3">
               <a class="p-2 text-dark" href="{{ path('app_user_list') }}">Users</a>
-                                                                   
-              <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="{{ path('app_book_list') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Books
-                </a>                 
+              
+              <a class="dropdown-toggle" href="{{ path('app_book_list') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                                    
+                Books
+              </a>                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <a class="dropdown-item" href="{{ path('app_book_add') }}">Add Book</a>
                   <a class="dropdown-item" href="{{ path('app_book_list') }}">List Books</a>                   
                 </div>
-              </div> 
-                
-              <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="{{ path('app_publisher_list') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Publishers
-                </a>                 
+         
+             
+              <a class=" dropdown-toggle" href="{{ path('app_publisher_list') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Publishers
+              </a>                 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <a class="dropdown-item" href="{{ path('app_publisher_add') }}">Add Publisher</a>
                   <a class="dropdown-item" href="{{ path('app_publisher_list') }}">List Publishers</a>                   
                 </div>
-              </div>    
-                                                                         
-            </nav>        
-          <a class="btn btn-outline-primary" href="{{ path('fos_user_security_logout') }}">Logout</a>
-        </div>
-        
+            </nav>                                                                                     #}
+            <a class="btn btn-outline-primary" href="{{ path('fos_user_security_logout') }}">Logout</a>
+        </div>        
       {% elseif not app.user %}                                
         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
           <h5 class="my-0 mr-md-auto font-weight-normal" ><a href="{{ path('homepage') }}" style="text-align:center">Books</a></h5>
@@ -54,7 +49,8 @@
       
       {% block javascriptsglobal %}
         <script type="text/javascript" src="{{ asset('bundles/app/js/jquery-3.3.1.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>                       
+        <script type="text/javascript" src="{{ asset('bundles/app/js/poper.min.js') }}"></script>         
+        <script type="text/javascript" src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
       {% endblock %}
       
       {% block javascript %}             
