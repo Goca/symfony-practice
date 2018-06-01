@@ -107,13 +107,13 @@ class BookController extends Controller
     /**
      * @Route("/featured", name="app_book_featured")
      */
-    public function featuredBooks()
-    {  
-      
+    public function featuredBooks()     
+    {        
+       
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Book');
         
-        $books = $repository->findAllfeaturedBooks(); //array('featured' => '1'));
+        $books = $repository->findAllfeaturedBooks(); 
         
         return $this->render('@App/Book/listbook.html.twig', ['books' => $books]);
 
