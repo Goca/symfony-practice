@@ -118,4 +118,23 @@ class BookController extends Controller
         return $this->render('@App/Book/listbook.html.twig', ['books' => $books]);
 
     }
+    
+    /**
+     * @Route("/show/{id}", name="app_book_show")
+     */
+    public function showBook($id)
+    {
+      
+        $book = $this->getDoctrine()
+        ->getRepository(Book::class)
+        ->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book found for id '.$id
+            );
+        }
+        
+        return $this->render('@App/Book/showbook.html.twig', ['book' => $book]);
+    }
 }
