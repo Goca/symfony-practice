@@ -107,4 +107,24 @@ class PublisherController extends Controller
         return $this->render('@App/Book/listpublisher.html.twig', ['publishers' => $publishers]);
     }
     
+    
+     /**
+     * @Route("/show/{id}", name="app_book_publisher")
+     */
+    public function showPublisher($id)
+    {
+      
+        $publisher = $this->getDoctrine()
+        ->getRepository(Publisher::class)
+        ->find($id);
+
+        if (!$publisher) {
+            throw $this->createNotFoundException(
+                'No publisher found for id '.$id
+            );
+        }
+        
+        return $this->render('@App/Book/showpublisher.html.twig', ['publisher' => $publisher]);
+    }
+    
 }

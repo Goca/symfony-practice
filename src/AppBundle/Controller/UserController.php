@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
+
 /**
  * @Route("/user")
  */
@@ -231,4 +232,23 @@ class UserController extends Controller
       return $this->render('@App/User/edit.html.twig', ['editForm' => $form->createView()]);
     } 
     
+    
+     /**
+     * @Route("/show/{id}", name="app_book_author")
+     */
+    public function showAuthor($id)
+    {
+      
+        $user = $this->getDoctrine()
+        ->getRepository(User::class)
+        ->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException(
+                'No author found for id '.$id
+            );
+        }
+        
+        return $this->render('@App/Book/showauthor.html.twig', ['user' => $user]);
+    }
 }
