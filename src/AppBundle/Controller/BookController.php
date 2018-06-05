@@ -35,7 +35,7 @@ class BookController extends Controller
             $entityManager->flush();
 
             return $this->redirect($this->generateUrl(
-                'app_book_edit', ['id' => $book->getId()]
+                'app_book_add', ['id' => $book->getId()]
             ));
         }
 
@@ -99,7 +99,7 @@ class BookController extends Controller
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Book'); // AppBundle\Entity\User;
 
-        $books = $repository->findAll();
+        $books = $repository->orderByFeaturedBooks();
 
         return $this->render('@App/Book/listbook.html.twig', ['books' => $books]);
     }
@@ -113,7 +113,7 @@ class BookController extends Controller
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:Book');
         
-        $books = $repository->findAllfeaturedBooks(); 
+        $books = $repository->findAllFeaturedBooks(); 
         
         return $this->render('@App/Book/listbook.html.twig', ['books' => $books]);
 
@@ -137,4 +137,5 @@ class BookController extends Controller
         
         return $this->render('@App/Book/showbook.html.twig', ['book' => $book]);
     }
+        
 }

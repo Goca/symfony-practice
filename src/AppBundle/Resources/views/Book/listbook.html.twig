@@ -9,6 +9,7 @@
       text-align: left;
       margin-top: 20px;
     }
+    
   </style>
 {% endblock %} 
 {% block body %}
@@ -26,16 +27,29 @@
         </tr>
       </thead>
       {% for book in books %}
-      <tr>    
-        <td>{{ book.title }}</td>
-        <td>{{ book.isbn }}</td>
-        <td>{{ book.yearOfPublishing|date('Y')}}</td>
-        <td>{{ book.publisher}}</td>
-        <td>{{ book.category}}</td> 
-        <td>{{ book.author}}</td>         
-        <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>
-          <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a><br/>
-          <a href="{{ path('app_book_show', { 'id': book.id }) }}" style="text-align:center">View</a></center></td>       
+      <tr> 
+        {% if book.featured == 1 %}
+          <tr bgcolor="#e3eff4">
+          <td>{{ book.title }}</td>
+          <td>{{ book.isbn }}</td>
+          <td>{{ book.yearOfPublishing|date('Y')}}</td>
+          <td>{{ book.publisher}}</td>
+          <td>{{ book.category}}</td> 
+          <td>{{ book.author}}</td>         
+          <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>
+            <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a><br/>
+            <a href="{{ path('app_book_show', { 'id': book.id }) }}" style="text-align:center">View</a></center></td> 
+        {% elseif book.featured == 0 %} 
+          <td>{{ book.title }}</td>
+          <td>{{ book.isbn }}</td>
+          <td>{{ book.yearOfPublishing|date('Y')}}</td>
+          <td>{{ book.publisher}}</td>
+          <td>{{ book.category}}</td> 
+          <td>{{ book.author}}</td>         
+          <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>
+            <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a><br/>
+            <a href="{{ path('app_book_show', { 'id': book.id }) }}" style="text-align:center">View</a></center></td>           
+        {% endif %} 
       </tr>
       {% endfor %}
     </table>
