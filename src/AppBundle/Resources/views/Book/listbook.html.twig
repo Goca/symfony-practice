@@ -19,6 +19,7 @@
           <th>Title</th>
           <th>ISBN</th>
           <th>Year of publishing</th>
+          <th>Publisher</th>
           <th>Category</th>
           <th>Author</th>          
           <th>Actions</th>
@@ -28,11 +29,13 @@
       <tr>    
         <td>{{ book.title }}</td>
         <td>{{ book.isbn }}</td>
-        <td>{{ book.yearOfPublishing|date('Y')}}</td>        
+        <td>{{ book.yearOfPublishing|date('Y')}}</td>
+        <td>{{ book.publisher}}</td>
         <td>{{ book.category}}</td> 
         <td>{{ book.author}}</td>         
         <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>
-          <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a> </center></td>       
+          <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a><br/>
+          <a href="{{ path('app_book_show', { 'id': book.id }) }}" style="text-align:center">View</a></center></td>       
       </tr>
       {% endfor %}
     </table>

@@ -234,7 +234,7 @@ class UserController extends Controller
     
     
      /**
-     * @Route("/show/{id}", name="app_book_author")
+     * @Route("/show/{id}", name="app_author_show")
      */
     public function showAuthor($id)
     {

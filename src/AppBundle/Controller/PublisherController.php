@@ -109,7 +109,7 @@ class PublisherController extends Controller
     
     
      /**
-     * @Route("/show/{id}", name="app_book_publisher")
+     * @Route("/show/{id}", name="app_publisher_show")
      */
     public function showPublisher($id)
     {

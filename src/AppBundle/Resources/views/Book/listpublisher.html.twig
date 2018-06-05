@@ -26,7 +26,8 @@
         <td>{{ publisher.title }}</td>
         <td>{{ publisher.city }}</td>       
         <td><center><a href="{{ path('app_publisher_delete', { 'id': publisher.id }) }}" style="text-align:center">Delete</a><br/>
-          <a href="{{ path('app_publisher_edit', { 'id': publisher.id }) }}" style="text-align:center">Edit</a> </center></td>       
+          <a href="{{ path('app_publisher_edit', { 'id': publisher.id }) }}" style="text-align:center">Edit</a><br/>
+          <a href="{{ path('app_publisher_show', { 'id': publisher.id }) }}" style="text-align:center">View</a></center></td>       
       </tr>
       {% endfor %}
     </table>
