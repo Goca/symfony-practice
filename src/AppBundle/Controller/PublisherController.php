@@ -111,7 +111,7 @@ class PublisherController extends Controller
      /**
      * @Route("/show/{id}", name="app_publisher_show")
      */
-    public function showPublisher($id)
+    public function showPublisherAction($id)
     {
       
         $publisher = $this->getDoctrine()
@@ -124,7 +124,17 @@ class PublisherController extends Controller
             );
         }
         
-        return $this->render('@App/Book/showpublisher.html.twig', ['publisher' => $publisher]);
+        $bookRepository = $this->getDoctrine()
+            ->getRepository('AppBundle:Book'); 
+     
+        $books = $bookRepository->findPublisherBooks($publisher);
+        
+        //Render view
+        return $this->render('@App/Book/showpublisher.html.twig', [
+            'publisher' => $publisher,
+            'books'=> $books  
+        ]);
+        
     }
     
 }

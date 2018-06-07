@@ -20,7 +20,7 @@
           <th>Year of publishing</th>
           <th>Publisher</th>
           <th>Category</th>
-          <th>Author</th>                  
+          <th>Author</th>                 
         </tr>
       </thead>
       <tr>    
@@ -29,7 +29,7 @@
         <td>{{ book.yearOfPublishing|date('Y')}}</td> 
         <td><a href="{{ path('app_publisher_show', { 'id': book.publisher.id }) }}" style="text-align:center">{{ book.publisher }}</a></td>                
         <td>{{ book.category}}</td>
-        <td><a href="{{ path('app_author_show', { 'id': book.author.id }) }}" style="text-align:center">{{ book.author}}</a></td>        
+        <td><a href="{{ path('app_author_show', { 'id': book.author.id }) }}" style="text-align:center">{{ book.author}}</a></td>      
       </tr>      
     </table>
   </div>      

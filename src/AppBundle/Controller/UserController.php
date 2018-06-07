@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
-
 /**
  * @Route("/user")
  */
@@ -205,10 +204,10 @@ class UserController extends Controller
     /**
      * @Route("/edit-user", name="app_user_edit")
      */
-    public function editAction(Request $request)           // akcija kojom cemo editovati Usera iz baze
+    public function editAction(Request $request)           // akcija kojom cemo editovati Usera iz baze ( samo ako je user logovan)
     {
       
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) { // proveramo da li je User logovan
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) { // proveramo da li je User logovan 
             throw $this->createAccessDeniedException();
         }      
             
@@ -236,7 +235,7 @@ class UserController extends Controller
      /**
      * @Route("/show/{id}", name="app_author_show")
      */
-    public function showAuthor($id)
+    public function showAuthorAction($id)
     {
       
         $user = $this->getDoctrine()
@@ -249,6 +248,15 @@ class UserController extends Controller
             );
         }
         
-        return $this->render('@App/Book/showauthor.html.twig', ['user' => $user]);
+        $bookRepository = $this->getDoctrine()
+            ->getRepository('AppBundle:Book');
+     
+        $books = $bookRepository->findAuthorBooks($user);
+        
+        //Render view
+        return $this->render('@App/Book/showauthor.html.twig', [
+            'user' => $user,
+            'books'=> $books  // 'books' i $books nije isto, 'books' je promenljiva koju saljemo u twig i moze imati bilo koje ime (book in books, books je promenljiva kou smo poslali)
+        ]);
     }
 }

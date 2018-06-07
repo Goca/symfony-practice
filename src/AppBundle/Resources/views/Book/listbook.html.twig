@@ -13,45 +13,7 @@
   </style>
 {% endblock %} 
 {% block body %}
-  <div class="container">
-    <table class="table table-striped">
-      <thead class="thead-dark">
-        <tr>    
-          <th>Title</th>
-          <th>ISBN</th>
-          <th>Year of publishing</th>
-          <th>Publisher</th>
-          <th>Category</th>
-          <th>Author</th>          
-          <th>Actions</th>
-        </tr>
-      </thead>
-      {% for book in books %}
-      <tr> 
-        {% if book.featured == 1 %}
-          <tr bgcolor="#e3eff4">
-          <td>{{ book.title }}</td>
-          <td>{{ book.isbn }}</td>
-          <td>{{ book.yearOfPublishing|date('Y')}}</td>
-          <td>{{ book.publisher}}</td>
-          <td>{{ book.category}}</td> 
-          <td>{{ book.author}}</td>         
-          <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>
-            <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a><br/>
-            <a href="{{ path('app_book_show', { 'id': book.id }) }}" style="text-align:center">View</a></center></td> 
-        {% elseif book.featured == 0 %} 
-          <td>{{ book.title }}</td>
-          <td>{{ book.isbn }}</td>
-          <td>{{ book.yearOfPublishing|date('Y')}}</td>
-          <td>{{ book.publisher}}</td>
-          <td>{{ book.category}}</td> 
-          <td>{{ book.author}}</td>         
-          <td><center><a href="{{ path('app_book_delete', { 'id': book.id }) }}" style="text-align:center">Delete</a><br/>
-            <a href="{{ path('app_book_edit', { 'id': book.id }) }}" style="text-align:center">Edit</a><br/>
-            <a href="{{ path('app_book_show', { 'id': book.id }) }}" style="text-align:center">View</a></center></td>           
-        {% endif %} 
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
+  <div class="container">  
+    {% include '@App/Book/_booktable.html.twig' %}   
+ </div>
 {% endblock %}

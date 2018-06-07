@@ -107,7 +107,7 @@ class BookController extends Controller
     /**
      * @Route("/featured", name="app_book_featured")
      */
-    public function featuredBooks()     
+    public function featuredBooksAction()     
     {        
        
         $repository = $this->getDoctrine()
@@ -122,7 +122,7 @@ class BookController extends Controller
     /**
      * @Route("/show/{id}", name="app_book_show")
      */
-    public function showBook($id)
+    public function showBookAction($id)                 // i ovo je na neki nacin upit, ali obzirom da je rezultat samo jedan slog tabele, ne mora se pisati kao poseban query
     {
       
         $book = $this->getDoctrine()
@@ -137,5 +137,5 @@ class BookController extends Controller
         
         return $this->render('@App/Book/showbook.html.twig', ['book' => $book]);
     }
-        
+         
 }

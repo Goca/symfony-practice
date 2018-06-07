@@ -19,16 +19,23 @@
           <th>Last name</th>
           <th>Username</th>
           <th>Email</th>               
-          <th>Date of birth</th>               
+          <th>Date of birth</th>   
         </tr>
       </thead>
       <tr>    
-       <td>{{ user.firstName }}</td>
+        <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td> 
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>        
         <td>{{ user.birthday|date('d.m.Y.')}}</td>
-      </tr>      
-    </table>
-  </div>      
+      </tr> 
+     </table>
+  </div> 
+  {% if books is null %}
+    <p style='font-size: 12px;text-align: center;'> No books found for this author </p>            
+    {% elseif books is not null %}   
+      <div class="container">  
+        {% include '@App/Book/_booktable.html.twig' %}   
+      </div>  
+  {% endif %}  
 {% endblock %}

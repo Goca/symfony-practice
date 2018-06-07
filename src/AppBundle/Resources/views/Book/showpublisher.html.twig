@@ -25,4 +25,11 @@
       </tr>      
     </table>
   </div>      
+  {% if books is null %}
+    <p style='font-size: 12px;text-align: center;'> No books found for this publisher </p>            
+    {% elseif books is not null %}   
+      <div class="container">  
+        {% include '@App/Book/_booktable.html.twig' %}   
+      </div>  
+  {% endif %}  
 {% endblock %}
