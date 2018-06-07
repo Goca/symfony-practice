@@ -256,7 +256,7 @@ class UserController extends Controller
         //Render view
         return $this->render('@App/Book/showauthor.html.twig', [
             'user' => $user,
-            'books'=> $books  // 'books' i $books nije isto, 'books' je promenljiva koju saljemo u twig i moze imati bilo koje ime (book in books, books je promenljiva kou smo poslali)
+            'books'=> $books  
         ]);
     }
 }
