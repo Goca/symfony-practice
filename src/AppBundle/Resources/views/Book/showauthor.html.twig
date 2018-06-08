@@ -31,11 +31,11 @@
       </tr> 
      </table>
   </div> 
-  {% if books is null %}
-    <p style='font-size: 12px;text-align: center;'> No books found for this author </p>            
-    {% elseif books is not null %}   
-      <div class="container">  
-        {% include '@App/Book/_booktable.html.twig' %}   
-      </div>  
+  {% if books is empty %}
+    <p style='font-size: 20px;text-align: center;'> No books found for this author. </p>            
+  {% elseif books is not empty %}   
+    <div class="container">  
+      {% include '@App/Book/_booktable.html.twig' %}   
+    </div>  
   {% endif %}  
 {% endblock %}
