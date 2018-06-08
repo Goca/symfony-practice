@@ -43,12 +43,24 @@ class BookRepository extends EntityRepository
     public function findPublisherBooks($publisher) // prosledjujemo  celu jednu vrstu (row) eniteta Publisher
     {
       
-        return $this->createQueryBuilder('book')              
+        return $this->createQueryBuilder('book')     // book, jedna vrsta entiteta Book         
             ->where('book.publisher = :publisher') //  :publisher, promenljiva koja se moze zvati bilo kako, tu je prihvati podatke iz entiteta Publisher
-            ->setParameter('publisher', $publisher)
+            ->setParameter('publisher', $publisher) 
             ->orderBy('book.featured', "DESC")
             ->getQuery()
             ->getResult()
        ;       
     }
+    
+    public function filterBooksByTitle($title)       
+    {
+        return $this->createQueryBuilder('book')
+            ->where('book.title = :title')
+            ->setParameter('title', $title)
+            ->getQuery()
+            ->getResult()           
+        ;
+    }
+    
+    
 }

@@ -12,8 +12,20 @@
     
   </style>
 {% endblock %} 
-{% block body %}
-  <div class="container">  
-    {% include '@App/Book/_booktable.html.twig' %}   
- </div>
+{% block body %}  
+  <center>
+  {{ form_start(filterForm)}}  
+    {{ form_label(filterForm.title)}}
+    {{ form_widget(filterForm.title)}}<br/>       
+    {{ form_widget(filterForm.filter)}}<br/>        
+  {{ form_end(filterForm) }} 
+  </center><br/>
+  {% if books is empty %}
+    <p style='font-size: 20px;text-align: center;'> No books found for this title. </p>            
+  {% elseif books is not empty %}   
+    <div class="container">  
+      {% include '@App/Book/_booktable.html.twig' %}   
+    </div>  
+  {% endif %}
+ 
 {% endblock %}

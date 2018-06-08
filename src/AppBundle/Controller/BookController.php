@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Book;
 use AppBundle\Form\BookCategory\BookForm;
+use AppBundle\Form\BookCategory\FilterForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,6 +60,7 @@ class BookController extends Controller
         $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+              
                 $entityManager = $this->getDoctrine()->getManager();
             
                 $entityManager->persist($book);
@@ -94,14 +96,28 @@ class BookController extends Controller
     /**
      * @Route("/list-book", name="app_book_list")
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $repository = $this->getDoctrine()
-            ->getRepository('AppBundle:Book'); // AppBundle\Entity\User;
+        $bookRepository = $this->getDoctrine()
+            ->getRepository('AppBundle:Book'); // AppBundle\Entity\Book;
+        $books = $bookRepository->orderByFeaturedBooks();
+       
+        $form = $this->createForm(FilterForm::class, null, [                                
+            'action' => $this->generateUrl('app_book_list')   
+        ]);
+        
+        $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+              
+                $formData = $form->getData();                                                                  
+                $books = $bookRepository->filterBooksByTitle($formData['title']);                             
+            }
+        
 
-        $books = $repository->orderByFeaturedBooks();
-
-        return $this->render('@App/Book/listbook.html.twig', ['books' => $books]);
+        return $this->render('@App/Book/listbook.html.twig', [
+            'books' => $books, // prosledjumemo  promenljivu koja je niz ( niz knjiga)
+            'filterForm' => $form->createView() // prosledjujemo formu
+                ]);
     }
     
     /**
