@@ -12,7 +12,8 @@
     
   </style>
 {% endblock %} 
-{% block body %}  
+{% block body %}
+{% if filterForm is defined %}  
   <center>
   {{ form_start(filterForm)}}  
     {{ form_label(filterForm.title)}}
@@ -20,6 +21,7 @@
     {{ form_widget(filterForm.filter)}}<br/>        
   {{ form_end(filterForm) }} 
   </center><br/>
+  {% else%}{% endif %}
   {% if books is empty %}
     <p style='font-size: 20px;text-align: center;'> No books found for this title. </p>            
   {% elseif books is not empty %}   
