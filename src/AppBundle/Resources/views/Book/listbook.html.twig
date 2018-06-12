@@ -13,21 +13,26 @@
   </style>
 {% endblock %} 
 {% block body %}
+  
 {% if filterForm is defined %}  
   <center>
   {{ form_start(filterForm)}}  
     {{ form_label(filterForm.title)}}
-    {{ form_widget(filterForm.title)}}<br/>       
+    {{ form_widget(filterForm.title)}}<br/> 
+    {{ form_label(filterForm.isbn)}}
+    {{ form_widget(filterForm.isbn)}}<br/>
     {{ form_widget(filterForm.filter)}}<br/>        
   {{ form_end(filterForm) }} 
   </center><br/>
   {% else%}{% endif %}
+  <h1 style='font-size: 20px;text-align: center;'>List of all books</h1>
+  <h1 style='font-size: 15px;text-align: center;'>(Background color for featured books is blue.)</h1>
   {% if books is empty %}
-    <p style='font-size: 20px;text-align: center;'> No books found for this title. </p>            
-  {% elseif books is not empty %}   
+    <p style='font-size: 20px;text-align: center;'>No books found for this title.</p>            
+  {% else %}   
     <div class="container">  
       {% include '@App/Book/_booktable.html.twig' %}   
     </div>  
-  {% endif %}
- 
+  {% endif %} 
+  
 {% endblock %}

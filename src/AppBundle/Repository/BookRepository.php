@@ -62,5 +62,43 @@ class BookRepository extends EntityRepository
         ;
     }
     
+    public function filterBooksByISBN($isbn)       
+    {
+        return $this->createQueryBuilder('book')
+            ->where('book.isbn = :isbn')
+            ->setParameter('isbn', $isbn)
+            ->getQuery()
+            ->getResult()           
+        ;
+    }
     
+    public function filterBooks($title=0,$isbn=0)       
+    {
+         $q = $this->createQueryBuilder('book');
+         
+          if(!is_null($title))
+          { 
+              $q->where('book.title = :title');
+              $q->setParameter('title', $title);  
+//              $q->getQuery();
+          }
+
+          if(!is_null($isbn))
+          {
+              $q->andwhere('book.isbn = :isbn');
+              $q->setParameter('isbn', $isbn);
+//              $q->getQuery();
+
+          }
+
+         $books=$q->getQuery();
+//        $books=$q->getResult(); 
+          return $books;
+
+          
+                 
+    }
+    
+    
+   
 }

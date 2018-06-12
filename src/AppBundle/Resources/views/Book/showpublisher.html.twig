@@ -12,6 +12,7 @@
 {% endblock %} 
 {% block body %}
   <div class="container">
+    <h1 style='font-size: 20px;text-align: left;'> Publisher</h1>
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr>    
@@ -23,14 +24,16 @@
         <td>{{ publisher.title }}</td>
         <td>{{ publisher.city }}</td>  
       </tr>      
-    </table>
+    </table><br/>
   </div>      
   {% if books|length == 0 %}
     <p style='font-size: 20px;text-align: center;'> No books found for this publisher. </p>            
-    {% elseif books|length > 0 %}   
-      <div class="container">  
-        {% include '@App/Book/_booktable.html.twig' %}   
-      </div>  
+      {% elseif books|length > 0 %}   
+        <div class="container">
+          <h1 style='font-size: 20px;text-align: left;'> Books of this publisher</h1>
+          <h1 style='font-size: 15px;text-align: left;'> (Background color for featured books is blue.)</h1>         
+          {% include '@App/Book/_booktable.html.twig' %}   
+        </div>  
   {% endif %}  
 {% endblock %}
 

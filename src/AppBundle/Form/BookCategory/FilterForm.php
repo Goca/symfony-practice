@@ -17,10 +17,13 @@ class FilterForm  extends AbstractType
 
             $builder
                 ->add('title', TextType::class, [
-                    'label'=> 'Search',
                     'attr' => [
                     'placeholder' => 'Filter by Title'],
                     ])
+                ->add('isbn', TextType::class, [
+                    'attr' => [
+                    'placeholder' => 'Filter by ISBN'],
+                    ])    
                 ->add('filter', SubmitType::class, 
                     array('label' => 'Filter'));
     }    

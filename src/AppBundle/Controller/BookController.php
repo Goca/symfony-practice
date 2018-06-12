@@ -110,15 +110,15 @@ class BookController extends Controller
             if ($form->isSubmitted() && $form->isValid()) {
               
                 $formData = $form->getData();                                                                  
-                $books = $bookRepository->filterBooksByTitle($formData['title']);                             
-            }
-        
-
+                $books = $bookRepository->filterBooks($formData['title'],$formData['isbn']);                
+            }                              
+         
         return $this->render('@App/Book/listbook.html.twig', [
             'books' => $books, // prosledjumemo  promenljivu koja je niz ( niz knjiga)
-            'filterForm' => $form->createView() // prosledjujemo formu
+            'filterForm' => $form->createView() // prosledjujemo promenljivu uz pomoc koje prosledjujemo ( twigu, kreiramo  formu)
                 ]);
     }
+    
     
     /**
      * @Route("/featured", name="app_book_featured")

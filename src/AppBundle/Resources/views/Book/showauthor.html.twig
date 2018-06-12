@@ -12,29 +12,32 @@
 {% endblock %} 
 {% block body %}
   <div class="container">
-    <table class="table table-striped">
-      <thead class="thead-dark">
+    <h1 style='font-size: 20px;text-align: left;'> Author</h1>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>    
+            <th>Name</th>
+            <th>Last name</th>
+            <th>Username</th>
+            <th>Email</th>               
+            <th>Date of birth</th>   
+          </tr>
+        </thead>
         <tr>    
-          <th>Name</th>
-          <th>Last name</th>
-          <th>Username</th>
-          <th>Email</th>               
-          <th>Date of birth</th>   
-        </tr>
-      </thead>
-      <tr>    
-        <td>{{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td> 
-        <td>{{ user.username }}</td>
-        <td>{{ user.email }}</td>        
-        <td>{{ user.birthday|date('d.m.Y.')}}</td>
-      </tr> 
-     </table>
-  </div> 
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td> 
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>        
+          <td>{{ user.birthday|date('d.m.Y.')}}</td>
+        </tr> 
+       </table><br/>
+    </div> 
   {% if books is empty %}
     <p style='font-size: 20px;text-align: center;'> No books found for this author. </p>            
-  {% elseif books is not empty %}   
-    <div class="container">  
+  {% else %}
+    <div class="container"> 
+      <h1 style='font-size: 18px;text-align: left;'> Books of this author</h1>
+      <h1 style='font-size: 15px;text-align: left;'> (Background color for featured books is blue.)</h1>  
       {% include '@App/Book/_booktable.html.twig' %}   
     </div>  
   {% endif %}  
