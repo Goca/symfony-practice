@@ -72,7 +72,7 @@ class BookRepository extends EntityRepository
         ;
     }
     
-    public function filterBooks($title=0,$isbn=0)       
+    public function filterBooks($title=null,$isbn=null)       
     {
          $q = $this->createQueryBuilder('book');
          
@@ -80,25 +80,18 @@ class BookRepository extends EntityRepository
           { 
               $q->where('book.title = :title');
               $q->setParameter('title', $title);  
-//              $q->getQuery();
           }
 
           if(!is_null($isbn))
           {
               $q->andwhere('book.isbn = :isbn');
               $q->setParameter('isbn', $isbn);
-//              $q->getQuery();
 
           }
 
-         $books=$q->getQuery();
-//        $books=$q->getResult(); 
-          return $books;
+         $q->orderBy('book.featured', "DESC");
 
-          
-                 
-    }
-    
-    
-   
+         $books=$q->getQuery()->getResult();
+         return $books;                           
+    }           
 }
