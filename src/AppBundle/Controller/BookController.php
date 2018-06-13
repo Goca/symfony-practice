@@ -110,7 +110,7 @@ class BookController extends Controller
             if ($form->isSubmitted() && $form->isValid()) {
               
                 $formData = $form->getData();                                                                  
-                $books = $bookRepository->filterBooks($formData['title'],$formData['isbn']);                
+                $books = $bookRepository->filterBooks($formData['title'],$formData['isbn'],$formData['fromDate'],$formData['toDate']);                
             }                              
          
         return $this->render('@App/Book/listbook.html.twig', [

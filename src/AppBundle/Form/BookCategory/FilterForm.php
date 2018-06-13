@@ -30,7 +30,7 @@ class FilterForm  extends AbstractType
                 ->add('fromDate', DateType::class, array(
                     'required' => FALSE,
                     'attr' => [
-                        'placeholder' => 'From Year '],   
+                        'placeholder' => 'From Year'],   
                     'widget' => 'single_text',
                     'format' => 'yyyy',
                 ))  

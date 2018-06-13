@@ -72,25 +72,38 @@ class BookRepository extends EntityRepository
         ;
     }
     
-    public function filterBooks($title=null,$isbn=null)       
+    public function filterBooks($title=null,$isbn=null,$fromDate=null,$toDate=null)       
     {
          $q = $this->createQueryBuilder('book');
          
-          if(!is_null($title))
-          { 
-              $q->where('book.title = :title');
+         if(!is_null($title))
+         { 
+              $q->andWhere('book.title = :title');
               $q->setParameter('title', $title);  
-          }
+         }
 
-          if(!is_null($isbn))
-          {
-              $q->andwhere('book.isbn = :isbn');
+         if(!is_null($isbn))
+         {
+              $q->andWhere('book.isbn = :isbn');
               $q->setParameter('isbn', $isbn);
 
-          }
+         }
 
+         if(!is_null($fromDate))
+         { 
+              $q->andWhere('book.yearOfPublishing >= :fromDate');
+              
+              $q->setParameter('fromDate', $fromDate); 
+         }
+
+         if(!is_null($toDate))
+         { 
+              $q->andWhere('book.yearOfPublishing <= :toDate'); 
+              $q->setParameter('toDate', $toDate);
+         }
+                                                                                
          $q->orderBy('book.featured', "DESC");
-
+         
          $books=$q->getQuery()->getResult();
          return $books;                           
     }           
